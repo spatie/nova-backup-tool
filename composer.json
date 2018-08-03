@@ -1,0 +1,49 @@
+{
+    "name": "spatie/nova-backup-tool",
+    "description": "A Laravel Nova tool to display the application log.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "homepage": "https://github.com/spatie/nova-backup-tool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "orchestra/testbench": "^3.6",
+        "spatie/phpunit-snapshot-assertions": "^1.3",
+        "symfony/process": "^4.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\NovaBackupTool\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\NovaBackupTool\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spatie\\NovaBackupTool\\NovaBackupToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
