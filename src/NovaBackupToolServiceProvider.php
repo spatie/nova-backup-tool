@@ -17,7 +17,7 @@ class NovaBackupToolServiceProvider extends ServiceProvider
     {
         $router = $this->app['router'];
 
-        $router->post($this->getNovaUrl('backup-tool'), BackupController::class);
+        $router->get($this->getNovaUrl('backup-tool'), BackupController::class . '@index');
     }
 
     public function getNovaUrl(string $url = '/'): string
