@@ -1,19 +1,19 @@
 <?php
 
-namespace Spatie\NovaBackupTool;
+namespace Spatie\BackupTool;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
-use Spatie\NovaBackupTool\Controllers\BackupsController;
-use Spatie\NovaBackupTool\Controllers\BackupStatussesController;
-use Spatie\NovaBackupTool\Controllers\CleanBackupsController;
+use Spatie\BackupTool\Controllers\BackupsController;
+use Spatie\BackupTool\Controllers\BackupStatussesController;
+use Spatie\BackupTool\Controllers\CleanBackupsController;
 
-class NovaBackupToolServiceProvider extends ServiceProvider
+class BackupToolServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'NovaBackupTool');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'BackupTool');
     }
 
     public function register()

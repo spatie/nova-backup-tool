@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules;
+namespace Spatie\BackupTool\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -8,7 +8,7 @@ class BackupDisk implements Rule
 {
     public function passes($attribute, $value)
     {
-        $configuredBackupDisks = config('backup.destination.disks');
+        $configuredBackupDisks = config('backup.backup.destination.disks');
 
         return in_array($value, $configuredBackupDisks);
     }

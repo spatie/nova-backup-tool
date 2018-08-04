@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\NovaBackupTool\Tests;
+namespace Spatie\BackupTool\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Backup\BackupServiceProvider;
-use Spatie\NovaBackupTool\NovaBackupToolServiceProvider;
+use Spatie\BackupTool\BackupToolServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -12,7 +12,7 @@ abstract class TestCase extends Orchestra
     {
         return [
             BackupServiceProvider::class,
-            NovaBackupToolServiceProvider::class,
+            BackupToolServiceProvider::class,
         ];
     }
 }

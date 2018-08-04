@@ -1,24 +1,23 @@
 <?php
 
-namespace Spatie\NovaBackupTool\Controllers;
+namespace Spatie\BackupTool\Controllers;
 
-use App\Rules\BackupDisk;
 use Illuminate\Http\Request;
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Tasks\Backup\BackupJobFactory;
-use Spatie\BackupTool\Controllers\ApiController;
-use Spatie\NovaBackupTool\File;
+use Spatie\BackupTool\File;
+use Spatie\BackupTool\Rules\BackupDisk;
 
 class BackupsController extends ApiController
 {
     public function index(Request $request)
     {
         $validated = $request->validate([
-            'disk' => new BackupDisk(),
+            'disk' => ['required', new BackupDisk()],
         ]);
 
-        $backupDestination = BackupDestination::create($validated['disk'], config('backup.name'));
+        $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
 
         return $backupDestination
             ->backups()

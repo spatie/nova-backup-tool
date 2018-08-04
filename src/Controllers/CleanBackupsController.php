@@ -1,22 +1,18 @@
 <?php
 
-namespace Spatie\NovaBackupTool\Controllers;
+namespace Spatie\BackupTool\Controllers;
 
-use Illuminate\Http\Request;
+use Spatie\Backup\Tasks\Cleanup\CleanupJob;
 use Spatie\Backup\Tasks\Cleanup\CleanupStrategy;
-use Spatie\BackupTool\Controllers\ApiController;
-use Spatie\NovaBackupTool\File;
-use Illuminate\Support\Facades\File as IlluminateFile;
-use Symfony\Component\Finder\SplFileInfo;
-use Illuminate\Routing\Controller;
+use Spatie\BackupTool\File;
 
 class CleanBackupsController extends ApiController
 {
     public function __invoke(CleanupStrategy $strategy)
     {
-        $strategy = app($config['cleanup']['strategy']);
+        $backupDestinations = BackupDestinationFactory::createFromArray(config('backup.backup'));
 
-        $cleanupJob = new CleanupJob($backupDestinations, $strategy, $disableNotifications);
+        $cleanupJob = new CleanupJob($backupDestinations, $strategy);
 
         $cleanupJob->run();
 

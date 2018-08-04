@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\NovaBackupTool\Tests;
+namespace Spatie\BackupTool\Tests;
 
 class BackupStatussesControllerTest extends TestCase
 {

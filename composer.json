@@ -18,7 +18,7 @@
     "require": {
         "php": ">=7.1.0",
         "orchestra/testbench": "^3.6",
-        "spatie/laravel-backup": "^5.9.2",
+        "spatie/laravel-backup": "^5.9.3",
         "symfony/process": "^4.1"
     },
     "require-dev": {
@@ -27,18 +27,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\NovaBackupTool\\": "src/"
+            "Spatie\\BackupTool\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\NovaBackupTool\\Tests\\": "tests"
+            "Spatie\\BackupTool\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\NovaBackupTool\\NovaBackupToolServiceProvider"
+                "Spatie\\BackupTool\\BackupToolServiceProvider"
             ]
         }
     },
