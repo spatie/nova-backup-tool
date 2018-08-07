@@ -24,7 +24,7 @@ class BackupsController extends ApiController
             ->map(function (Backup $backup) {
                 return [
                     'path' => $backup->path(),
-                    'date' => $backup->date(),
+                    'date' => $backup->date()->format('Y-m-d H:i:s'),
                     'size' => $backup->size(),
                 ];
             })
