@@ -2,6 +2,7 @@
 
 namespace Spatie\BackupTool\Controllers;
 
+use Spatie\Backup\BackupDestination\BackupDestinationFactory;
 use Spatie\Backup\Tasks\Cleanup\CleanupJob;
 use Spatie\Backup\Tasks\Cleanup\CleanupStrategy;
 use Spatie\BackupTool\File;
