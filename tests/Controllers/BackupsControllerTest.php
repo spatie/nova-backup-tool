@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 class BackupsControllerTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        Carbon::setTestNow(Carbon::create(2018)->startOfYear());
+    }
+
     /** @test */
     public function it_returns_no_results_if_no_backups_were_made()
     {
@@ -19,10 +26,6 @@ class BackupsControllerTest extends TestCase
     /** @test */
     public function it_can_create_a_backup()
     {
-        Carbon::setTestNow(Carbon::create(2018)->startOfYear());
-
-        $this->withoutExceptionHandling();
-
         $this
             ->postJson('/nova/backup-tool/backups', ['disk' => 'local'])
             ->assertSuccessful();
@@ -34,5 +37,40 @@ class BackupsControllerTest extends TestCase
             ->assertSuccessful()
             ->assertJsonCount(1)
             ->assertJsonStructure([0 => ['path', 'date', 'size']]);
+    }
+
+    public function it_can_delete_a_backup()
+    {
+        $this
+            ->postJson('/nova/backup-tool/backups', ['disk' => 'local'])
+            ->assertSuccessful();
+
+        $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
+
+        Storage::disk('local')->assertExists($pathToZip);
+
+        $this
+            ->deleteJson('/nova/backup-tool/backups', [
+                'disk' => 'local',
+                'file' => 'Laravel/2018-01-01-00-00-00.zip',
+            ])
+            ->assertSuccessful();
+
+        $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
+
+        Storage::disk('local')->assertMissing($pathToZip);
+    }
+
+    /** @test */
+    public function it_wont_delete_backups_for_an_invalid_disk_name()
+    {
+        $this
+            ->deleteJson('/nova/backup-tool/backups', [
+                'disk' => 'does-not-exist',
+                'file' => 'Laravel/2018-01-01-00-00-00.zip',
+            ])
+            ->assertJsonValidationErrors([
+                'disk'
+            ]);
     }
 }
