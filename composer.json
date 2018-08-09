@@ -18,7 +18,7 @@
     "require": {
         "php": ">=7.1.0",
         "orchestra/testbench": "^3.6",
-        "spatie/laravel-backup": "^5.9.3",
+        "spatie/laravel-backup": "^5.10.0",
         "symfony/process": "^4.1"
     },
     "require-dev": {

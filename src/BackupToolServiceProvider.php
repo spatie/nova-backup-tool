@@ -8,6 +8,7 @@ use Laravel\Nova\Nova;
 use Spatie\BackupTool\Controllers\BackupsController;
 use Spatie\BackupTool\Controllers\BackupStatussesController;
 use Spatie\BackupTool\Controllers\CleanBackupsController;
+use Spatie\BackupTool\Controllers\DownloadBackupController;
 
 class BackupToolServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,8 @@ class BackupToolServiceProvider extends ServiceProvider
             Route::get('backups', BackupsController::class . '@index');
             Route::post('backups', BackupsController::class . '@create');
             Route::delete('backups', BackupsController::class . '@delete');
+
+            Route::get('download-backup', DownloadBackupController::class);
 
             Route::get('backup-statusses', BackupStatussesController::class . '@index');
             Route::post('clean-backups', CleanBackupsController::class);

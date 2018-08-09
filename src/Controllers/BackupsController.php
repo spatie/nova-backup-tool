@@ -42,7 +42,7 @@ class BackupsController extends ApiController
     {
         $validated = $request->validate([
             'disk' => new BackupDisk(),
-            'path' => 'required',
+            'path' => ['required', new PathToZip()],
         ]);
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.name'));
