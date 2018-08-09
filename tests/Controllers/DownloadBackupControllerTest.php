@@ -4,6 +4,7 @@ namespace Spatie\BackupTool\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DownloadBackupControllerTest extends TestCase
 {
@@ -11,17 +12,20 @@ class DownloadBackupControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->createBackup();
-
         Carbon::setTestNow(Carbon::create(2018)->startOfYear());
+
+        $this->createBackup();
     }
 
     /** @test */
     public function it_can_download_a_backup()
     {
-        $this
+        $response = $this
             ->getJson('/nova/backup-tool/download-backup?disk=local&path=Laravel/2018-01-01-00-00-00.zip')
-            ->assertSuccessful();
+            ->assertSuccessful()
+            ->baseResponse;
+
+        $this->assertInstanceOf(StreamedResponse::class, $response);
     }
 
     /** @test */
@@ -39,5 +43,7 @@ class DownloadBackupControllerTest extends TestCase
             ->assertSuccessful();
 
         Storage::disk('local')->assertExists('Laravel/2018-01-01-00-00-00.zip');
+
+
     }
 }

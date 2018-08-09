@@ -14,7 +14,6 @@ class DownloadBackupController extends ApiController
 {
     public function __invoke(Request $request)
     {
-        dd('in download controller');
         $validated = $request->validate([
             'disk' => new BackupDisk(),
             'path' => ['required', new PathToZip()],

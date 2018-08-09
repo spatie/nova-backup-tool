@@ -8,6 +8,7 @@ use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Tasks\Backup\BackupJobFactory;
 use Spatie\BackupTool\File;
 use Spatie\BackupTool\Rules\BackupDisk;
+use Spatie\BackupTool\Rules\PathToZip;
 
 class BackupsController extends ApiController
 {
