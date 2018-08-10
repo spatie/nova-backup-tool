@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Helpers\Format;
-use Spatie\Backup\Tasks\Backup\BackupJobFactory;
 use Spatie\BackupTool\File;
+use Spatie\BackupTool\Jobs\CreateBackupJob;
 use Spatie\BackupTool\Rules\BackupDisk;
 use Spatie\BackupTool\Rules\PathToZip;
 
@@ -35,9 +35,7 @@ class BackupsController extends ApiController
 
     public function create()
     {
-        $backupJob = BackupJobFactory::createFromArray(config('backup'));
-
-        $backupJob->run();
+        dispatch(new CreateBackupJob());
     }
 
     public function delete(Request $request)
