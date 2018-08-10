@@ -34,13 +34,30 @@
                     <button @click="downloadBackup(backup)" class="mr-3 btn btn-default btn-primary">
                         Download
                     </button>
-                    <button @click="deleteBackup(backup)" class="mr-3 btn btn-default btn-danger">
+                    <button @click="openDeleteModal(backup)" class="mr-3 btn btn-default btn-danger">
                         Delete
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
+
+        <portal to="modals">
+            <transition name="fade">
+                <delete-resource-modal
+                  v-if="deleteModalOpen"
+                  @confirm="confirmDelete"
+                  @close="closeDeleteModal"
+                  mode="delete"
+                >
+                    <div class="p-8">
+                        <heading :level="2" class="mb-6">Delete backup</heading>
+                        <p class="text-80 leading-normal">Are you sure you want to delete the backup created at {{ deletingBackup.date }}?</p>
+                    </div>
+                </delete-resource-modal>
+            </transition>
+        </portal>
+
     </div>
 </template>
 
@@ -54,14 +71,14 @@
             return {
                 backups: [],
                 viewingDisk: '',
-                poller: null
+                poller: null,
+                deleteModalOpen: false,
+                deletingBackup: null,
             }
         },
 
         watch: {
             disks: function (newDisks) {
-                console.log('disks changed!');
-
                 if (this.poller !== null) {
                     return;
                 }
@@ -76,7 +93,7 @@
 
         methods: {
             pollForBackups() {
-                if (! this.disks.length) {
+                if (!this.disks.length) {
                     return;
                 }
 
@@ -95,11 +112,25 @@
                 window.location = downloadUrl;
             },
 
-            async deleteBackup(backup) {
-                await api.deleteBackup(this.viewingDisk, backup.path);
+            openDeleteModal(backup) {
+                this.deleteModalOpen = true;
+                this.deletingBackup = backup;
+            },
 
-                this.$toasted.show('Backup deleted...', {type: 'success'})
-            }
+            closeDeleteModal() {
+                this.deleteModalOpen = false;
+                this.deletingBackup = null;
+            },
+
+            confirmDelete() {
+                this.deleteModalOpen = false;
+
+                api.deleteBackup(this.viewingDisk, this.deletingBackup.path);
+
+                this.deletingBackup = null;
+
+                this.$toasted.show('Deleting backup...', {type: 'success'})
+            },
         },
     }
 </script>

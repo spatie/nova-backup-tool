@@ -47,12 +47,13 @@ class BackupsController extends ApiController
             'path' => ['required', new PathToZip()],
         ]);
 
-        $backupDestination = BackupDestination::create($validated['disk'], config('backup.name'));
+        $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
 
         $backupDestination
             ->backups()
+            ->dump()
             ->first(function (Backup $backup) use ($validated) {
-                $backup->path() === $validated['path'];
+                return $backup->path() === $validated['path'];
             })
             ->delete();
 

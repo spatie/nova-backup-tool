@@ -18,6 +18,7 @@ export default {
     },
 
     deleteBackup(disk, path) {
-        window.axios.delete(`${Nova.config.base}/backup-tool/backups`, {disk, path});
+        console.log('delete', disk, path);
+        window.axios.delete(`${Nova.config.base}/backup-tool/backups`, { params: {disk, path}});
     }
 }
