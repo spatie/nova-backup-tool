@@ -62,7 +62,6 @@
                 </delete-resource-modal>
             </transition>
         </portal>
-
     </div>
 </template>
 
