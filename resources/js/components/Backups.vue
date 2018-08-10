@@ -27,9 +27,9 @@
             </thead>
             <tbody>
             <tr v-for="backup in backups">
-                <td>{{ backup.path }}</td>
-                <td>{{ backup.date }}</td>
-                <td>{{ backup.size }}</td>
+                <td><span>{{ backup.path }}</span></td>
+                <td><span>{{ backup.date }}</span></td>
+                <td><span>{{ backup.size }}</span></td>
                 <td class="text-right">
                     <button @click="downloadBackup(backup)" class="mr-3 btn btn-default btn-primary">
                         Download
@@ -41,7 +41,7 @@
             </tr>
             <tr v-if="backups.length === 0">
                 <td colspan="4">
-                    There are no backups stored on this disk.
+                    No backups present.
                 </td>
             </tr>
             </tbody>
@@ -104,7 +104,9 @@
 
                 this.viewingDisk = this.disks[0];
 
-                this.poller = window.setInterval(() => this.getBackups(), 1000);
+                this.getBackups();
+
+                this.poller = window.setInterval(() => this.getBackups(), 5000);
             },
 
             async getBackups() {

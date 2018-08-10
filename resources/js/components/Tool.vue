@@ -3,9 +3,6 @@
         <heading>Backups</heading>
 
         <div class="flex mb-6 justify-end">
-            <button class="mr-3 btn btn-default btn-primary">
-                Clean Backups
-            </button>
             <button @click="createBackup" class="btn btn-default btn-primary">
                 Create Backup
             </button>
@@ -46,6 +43,12 @@
             Backups,
         },
 
+        data() {
+            return {
+                poller: null,
+            }
+        },
+
         computed: {
             disks() {
                 return window._.map(this.backupStatusses, 'disk');
@@ -58,16 +61,26 @@
             }
         },
 
-        async created() {
-            this.backupStatusses = await api.getBackupStatusses();
+        created() {
+            this.getBackupStatusses();
+
+            window.setInterval(this.getBackupStatusses, 5000);
+        },
+
+        beforeDestroy() {
+            window.clearInterval(this.poller);
         },
 
         methods: {
             createBackup() {
                 api.createBackup();
 
-                this.$toasted.show('Creating backup...', {type: 'success'})
+                this.$toasted.show('Creating backup...', {type: 'success'});
             },
+
+            async getBackupStatusses() {
+                this.backupStatusses = await api.getBackupStatusses();
+            }
         }
     }
 </script>
