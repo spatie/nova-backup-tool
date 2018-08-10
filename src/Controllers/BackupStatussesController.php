@@ -2,6 +2,7 @@
 
 namespace Spatie\BackupTool\Controllers;
 
+use Spatie\Backup\Helpers\Format;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatus;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
 use Spatie\BackupTool\File;
