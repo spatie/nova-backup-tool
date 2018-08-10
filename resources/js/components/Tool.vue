@@ -2,7 +2,7 @@
     <div>
         <heading>Backups</heading>
 
-        <div class="flex mb-6">
+        <div class="flex mb-6 justify-end">
             <button class="mr-3 btn btn-default btn-primary">
                 Clean Backups
             </button>

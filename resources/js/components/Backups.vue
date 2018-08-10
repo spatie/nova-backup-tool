@@ -39,6 +39,11 @@
                     </button>
                 </td>
             </tr>
+            <tr v-if="backups.length === 0">
+                <td colspan="4">
+                    There are no backups stored on this disk.
+                </td>
+            </tr>
             </tbody>
         </table>
 
@@ -113,6 +118,12 @@
             },
 
             openDeleteModal(backup) {
+                if (this.backups.length === 1) {
+                    this.$toasted.show('Cannot delete the last backup!', {type: 'error'})
+
+                    return;
+                }
+
                 this.deleteModalOpen = true;
                 this.deletingBackup = backup;
             },
