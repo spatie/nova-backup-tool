@@ -14,6 +14,9 @@
             <thead>
             <tr>
                 <th class="text-left">
+                    Path
+                </th>
+                <th class="text-left">
                     Created at
                 </th>
                 <th class="text-left">
@@ -24,13 +27,14 @@
             </thead>
             <tbody>
             <tr v-for="backup in backups">
+                <td>{{ backup.path }}</td>
                 <td>{{ backup.date }}</td>
                 <td>{{ backup.size }}</td>
-                <td>
+                <td class="text-right">
                     <button @click="downloadBackup(backup)" class="mr-3 btn btn-default btn-primary">
                         Download
                     </button>
-                    <button @click="deleteBackup(backup)" class="mr-3 btn btn-default btn-primary">
+                    <button @click="deleteBackup(backup)" class="mr-3 btn btn-default btn-danger">
                         Delete
                     </button>
                 </td>
@@ -86,7 +90,7 @@
             },
 
             downloadBackup(backup) {
-                let downloadUrl = `/${Nova.config.base}/backup-tool/download-backup?disk=${this.viewingDisk}&path=${backup.path}`;
+                let downloadUrl = `${Nova.config.base}/backup-tool/download-backup?disk=${this.viewingDisk}&path=${backup.path}`;
 
                 window.location = downloadUrl;
             },
