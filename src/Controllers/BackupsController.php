@@ -5,6 +5,7 @@ namespace Spatie\BackupTool\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;
+use Spatie\Backup\Helpers\Format;
 use Spatie\Backup\Tasks\Backup\BackupJobFactory;
 use Spatie\BackupTool\File;
 use Spatie\BackupTool\Rules\BackupDisk;
@@ -26,7 +27,7 @@ class BackupsController extends ApiController
                 return [
                     'path' => $backup->path(),
                     'date' => $backup->date()->format('Y-m-d H:i:s'),
-                    'size' => $backup->size(),
+                    'size' => Format::humanReadableSize($backup->size()),
                 ];
             })
             ->toArray();

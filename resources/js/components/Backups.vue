@@ -14,27 +14,26 @@
             <thead>
             <tr>
                 <th class="text-left">
-                    Name
+                    Created at
                 </th>
                 <th class="text-left">
-                    Created At
+                    Size
                 </th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="backup in backups">
-                <td></td>
                 <td>{{ backup.date }}</td>
                 <td>{{ backup.size }}</td>
-                <th>
+                <td>
                     <button @click="downloadBackup(backup)" class="mr-3 btn btn-default btn-primary">
                         Download
                     </button>
                     <button @click="deleteBackup(backup)" class="mr-3 btn btn-default btn-primary">
                         Delete
                     </button>
-                </th>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -51,24 +50,20 @@
             return {
                 backups: [],
                 viewingDisk: '',
-                pollor: null
+                poller: null
             }
         },
 
         watch: {
             disks: function (newDisks) {
+                console.log('disks changed!');
 
+                if (this.poller !== null) {
+                    return;
+                }
+
+                this.pollForBackups();
             },
-        },
-
-        created() {
-            if (! this.backups.length) {
-                return;
-            }
-
-            this.viewingDisk = this.backups[0];
-
-            this.poller = window.setInterval(() => this.getBackups(), 1000);
         },
 
         beforeDestroy() {
@@ -76,8 +71,18 @@
         },
 
         methods: {
-            getBackups() {
-                this.backups = api.getBackups(this.viewingDisk);
+            pollForBackups() {
+                if (! this.disks.length) {
+                    return;
+                }
+
+                this.viewingDisk = this.disks[0];
+
+                this.poller = window.setInterval(() => this.getBackups(), 1000);
+            },
+
+            async getBackups() {
+                this.backups = await api.getBackups(this.viewingDisk);
             },
 
             downloadBackup(backup) {

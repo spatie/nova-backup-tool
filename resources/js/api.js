@@ -6,9 +6,9 @@ export default {
     },
 
     async getBackups(disk) {
-        let response = await window.axios.get(`${Nova.config.base}/backup-tool/backups`, {
-            disk
-        });
+        let response = await window.axios.get(`${Nova.config.base}/backup-tool/backups?disk=${disk}`);
+
+        console.log('get backups', disk, response);
 
         return response.data;
     },
