@@ -12,7 +12,7 @@ class BackupStatussesController extends ApiController
 {
     public function index()
     {
-        return Cache::remember('backup-statusses', 1 / 12, function () {
+        return Cache::remember('backup-statusses', 1 / 15, function () {
             return BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitorBackups'))
                 ->map(function (BackupDestinationStatus $backupDestinationStatus) {
                     return [
