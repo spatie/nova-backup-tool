@@ -14,8 +14,6 @@ class BackupStatussesControllerTest extends TestCase
                 [
                     'name' => 'Laravel',
                     'disk' => 'local',
-                    'reachable' => true,
-                    'healthy' => false,
                     'amount' => 0,
                     'newest' => 'No backups present',
                     'usedStorage' => '0 KB',

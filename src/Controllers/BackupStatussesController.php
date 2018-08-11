@@ -2,6 +2,7 @@
 
 namespace Spatie\BackupTool\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use Spatie\Backup\Helpers\Format;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatus;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
@@ -11,20 +12,22 @@ class BackupStatussesController extends ApiController
 {
     public function index()
     {
-        return BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitorBackups'))
-            ->map(function (BackupDestinationStatus $backupDestinationStatus) {
-                return [
-                    'name' => $backupDestinationStatus->backupName(),
-                    'disk' => $backupDestinationStatus->diskName(),
-                    'reachable' => Format::emoji($backupDestinationStatus->isReachable()),
-                    'healthy' => Format::emoji($backupDestinationStatus->isHealthy()),
-                    'amount' => $backupDestinationStatus->amountOfBackups(),
-                    'newest' => $backupDestinationStatus->dateOfNewestBackup()
-                        ? Format::ageInDays($backupDestinationStatus->dateOfNewestBackup())
-                        : 'No backups present',
-                    'usedStorage' => $backupDestinationStatus->humanReadableUsedStorage(),
-                ];
-            })
-            ->toArray();
+        return Cache::remember('backup-statusses', 1 / 12, function () {
+            return BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitorBackups'))
+                ->map(function (BackupDestinationStatus $backupDestinationStatus) {
+                    return [
+                        'name' => $backupDestinationStatus->backupName(),
+                        'disk' => $backupDestinationStatus->diskName(),
+                        'reachable' => Format::emoji($backupDestinationStatus->isReachable()),
+                        'healthy' => Format::emoji($backupDestinationStatus->isHealthy()),
+                        'amount' => $backupDestinationStatus->amountOfBackups(),
+                        'newest' => $backupDestinationStatus->dateOfNewestBackup()
+                            ? $backupDestinationStatus->dateOfNewestBackup()->diffForHumans()
+                            : 'No backups present',
+                        'usedStorage' => $backupDestinationStatus->humanReadableUsedStorage(),
+                    ];
+                })
+                ->toArray();
+        });
     }
 }

@@ -6,16 +6,13 @@
                 Disk
             </th>
             <th class="text-left">
-                Reachable
-            </th>
-            <th class="text-left">
                 Healthy
             </th>
             <th class="text-left">
-                Amount
+                Amount of backups
             </th>
             <th class="text-left">
-                Newest
+                Newest backup
             </th>
             <th class="text-left">
                 Used Storage
@@ -25,7 +22,6 @@
         <tbody>
         <tr v-for="backupStatus in backupStatusses">
             <td>{{ backupStatus.disk }}</td>
-            <td>{{ backupStatus.reachable }}</td>
             <td>{{ backupStatus.healthy }}</td>
             <td>{{ backupStatus.amount }}</td>
             <td>{{ backupStatus.newest }}</td>

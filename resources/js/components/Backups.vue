@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="py-3 flex items-center border-b border-50">
+        <div v-if="disks.length > 1" class="py-3 flex items-center border-b border-50">
             <div>
                 <div class="ml-4">
-                    <select class="form-control form-select mr-2">
+                    <select v-model="viewingDisk" class="form-control form-select mr-2">
                         <option v-for="disk in disks" :value="disk" selected>{{ disk}}</option>
                     </select>
                 </div>
@@ -27,9 +27,9 @@
             </thead>
             <tbody>
             <tr v-for="backup in backups">
-                <td><span>{{ backup.path }}</span></td>
-                <td><span>{{ backup.date }}</span></td>
-                <td><span>{{ backup.size }}</span></td>
+                <td><span v-bind:class="spanClass(backup)">{{ backup.path }}</span></td>
+                <td><span v-bind:class="spanClass(backup)">{{ backup.date }}</span></td>
+                <td><span v-bind:class="spanClass(backup)">{{ backup.size }}</span></td>
                 <td class="text-right">
                     <button @click="downloadBackup(backup)" class="mr-3 btn btn-default btn-primary">
                         Download
@@ -37,6 +37,7 @@
                     <button @click="openDeleteModal(backup)" class="mr-3 btn btn-default btn-danger">
                         Delete
                     </button>
+
                 </td>
             </tr>
             <tr v-if="backups.length === 0">
@@ -57,7 +58,8 @@
                 >
                     <div class="p-8">
                         <heading :level="2" class="mb-6">Delete backup</heading>
-                        <p class="text-80 leading-normal">Are you sure you want to delete the backup created at {{ deletingBackup.date }}?</p>
+                        <p class="text-80 leading-normal">Are you sure you want to delete the backup created at {{
+                            deletingBackup.date }}?</p>
                     </div>
                 </delete-resource-modal>
             </transition>
@@ -82,7 +84,7 @@
         },
 
         watch: {
-            disks: function (newDisks) {
+            disks: function () {
                 if (this.poller !== null) {
                     return;
                 }
@@ -105,7 +107,7 @@
 
                 this.getBackups();
 
-                this.poller = window.setInterval(() => this.getBackups(), 5000);
+                this.poller = window.setInterval(() => this.getBackups(), 1000);
             },
 
             async getBackups() {
@@ -134,14 +136,26 @@
                 this.deletingBackup = null;
             },
 
-            confirmDelete() {
+            async confirmDelete() {
                 this.deleteModalOpen = false;
 
-                api.deleteBackup(this.viewingDisk, this.deletingBackup.path);
+                this.$toasted.show('Deleting backup...', {type: 'success'});
 
-                this.deletingBackup = null;
+                await api.deleteBackup(this.viewingDisk, this.deletingBackup.path);
+            },
 
-                this.$toasted.show('Deleting backup...', {type: 'success'})
+            isDeletingBackup(backup) {
+                if (this.deletingBackup === null) {
+                    return;
+                }
+
+                return backup.path === this.deletingBackup.path;
+            },
+
+            spanClass(backup) {
+                return {
+                    'text-60': this.isDeletingBackup(backup),
+                };
             },
         },
     }

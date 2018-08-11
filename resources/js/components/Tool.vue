@@ -64,7 +64,7 @@
         created() {
             this.getBackupStatusses();
 
-            window.setInterval(this.getBackupStatusses, 5000);
+            window.setInterval(this.getBackupStatusses, 1000);
         },
 
         beforeDestroy() {

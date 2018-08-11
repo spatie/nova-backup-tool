@@ -3,6 +3,7 @@
 namespace Spatie\BackupTool\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Helpers\Format;
@@ -21,17 +22,20 @@ class BackupsController extends ApiController
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
 
-        return $backupDestination
-            ->backups()
-            ->map(function (Backup $backup) {
-                return [
-                    'path' => $backup->path(),
-                    'date' => $backup->date()->format('Y-m-d H:i:s'),
-                    'size' => Format::humanReadableSize($backup->size()),
-                ];
-            })
-            ->toArray();
+        return Cache::remember("backups-{$validated['disk']}", 1 / 15, function () use ($backupDestination) {
+            return $backupDestination
+                ->backups()
+                ->map(function (Backup $backup) {
+                    return [
+                        'path' => $backup->path(),
+                        'date' => $backup->date()->format('Y-m-d H:i:s'),
+                        'size' => Format::humanReadableSize($backup->size()),
+                    ];
+                })
+                ->toArray();
+        });
     }
+
 
     public function create()
     {
