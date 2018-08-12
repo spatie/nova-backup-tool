@@ -18,6 +18,5 @@ class AuthenticateTest extends TestCase
         });
 
         $this->get('/nova/backup-tool/backup-statusses')->assertStatus(Response::HTTP_FORBIDDEN);
-
     }
 }
