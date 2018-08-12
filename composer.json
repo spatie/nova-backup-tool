@@ -15,13 +15,20 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../nova"
+        }
+    ],
     "require": {
         "php": ">=7.1.0",
-        "orchestra/testbench": "^3.6",
+        "laravel/nova": "*",
         "spatie/laravel-backup": "^5.10.0",
         "symfony/process": "^4.1"
     },
     "require-dev": {
+        "orchestra/testbench": "^3.6",
         "phpunit/phpunit": "7.1",
         "spatie/phpunit-snapshot-assertions": "^1.3"
     },

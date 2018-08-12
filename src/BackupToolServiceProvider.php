@@ -5,10 +5,7 @@ namespace Spatie\BackupTool;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
-use Spatie\BackupTool\Controllers\BackupsController;
-use Spatie\BackupTool\Controllers\BackupStatussesController;
-use Spatie\BackupTool\Controllers\CleanBackupsController;
-use Spatie\BackupTool\Controllers\DownloadBackupController;
+use Spatie\BackupTool\Middleware\Authenticate;
 
 class BackupToolServiceProvider extends ServiceProvider
 {
@@ -19,15 +16,8 @@ class BackupToolServiceProvider extends ServiceProvider
 
     public function register()
     {
-        Route::prefix($this->getNovaUrl('backup-tool'))->group(function () {
-            Route::get('backups', BackupsController::class . '@index');
-            Route::post('backups', BackupsController::class . '@create');
-            Route::delete('backups', BackupsController::class . '@delete');
-
-            Route::get('download-backup', DownloadBackupController::class);
-
-            Route::get('backup-statusses', BackupStatussesController::class . '@index');
-            Route::post('clean-backups', CleanBackupsController::class);
+        Route::prefix($this->getNovaUrl('backup-tool'))->middleware(Authenticate::class)->group(function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         });
     }
 

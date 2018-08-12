@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Backup\BackupServiceProvider;
+use Spatie\BackupTool\BackupTool;
 use Spatie\BackupTool\BackupToolServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -21,6 +22,10 @@ abstract class TestCase extends Orchestra
         parent::setUp();
 
         Storage::fake();
+
+        BackupTool::auth(function() {
+           return true;
+        });
     }
 
     protected function getEnvironmentSetUp($app)
