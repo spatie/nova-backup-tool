@@ -1,14 +1,27 @@
-# A Laravel Nova tool to display the application log
+# A Laravel Nova tool to display to backup your application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/nova-backup-tool.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-backup-tool)
 [![Build Status](https://img.shields.io/travis/spatie/nova-backup-tool/master.svg?style=flat-square)](https://travis-ci.org/spatie/nova-backup-tool)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/nova-backup-tool.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/nova-backup-tool)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/nova-backup-tool.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-backup-tool)
 
-Have you always wanted to see your application log in the browser? Now you can!
+This [Nova](https://nova.laravel.com) tool lets a user:
+- list all backups
+- create a new backup
+- download a backup
+- delete a backup
 
+Behind the screens [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) is used.
+
+TODO: add screenshot
+
+## Requirements
+
+Make sure you meet [the requirements for installing spatie/laravel-backup](https://docs.spatie.be/laravel-backup/v5/requirements).
 
 ## Installation
+
+First you must install [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) into your Laravel app. The installation instructions are [here](https://docs.spatie.be/laravel-backup/v5/installation-and-setup). When successfull running `php artisan backup:create` on the terminal should create a backup and `php artisan backup:list` should return a list will an overview of all backup disks.
 
 You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
@@ -16,9 +29,41 @@ You can install the package in to a Laravel app that uses [Nova](https://nova.la
 composer require spatie/nova-backup-tool
 ```
 
+Next up, you must register the tool with Nova. This is typically done in the `register` method of the `NovaServiceProvider`.
+
+```php
+// in app/Providers/NovaServiceProvder.php
+
+// ...
+
+public function register()
+{
+    Nova::tools([
+        // ...
+        new \Spatie\BackupTool\BackupTool(),
+    ]);
+}
+```
+
 ## Usage
 
-Click on the "Application log" menu item in your Nova app to see the log
+Click on the "Backups" menu item in your Nova app to see the log.
+
+### Authentication
+
+By default the tool can only be seen and used in the local environment. To define a more specific access policy for the tool, you should use the `BackupTool::auth` method. The `auth` method accepts a callback which should return true or false, indicating whether the user should have access to the tool. Typically, you should call `BackupTool::auth` in the boot method a service provider:
+
+```php
+// in a service provider
+
+use Spatie\BackupTool\BackupTool;
+
+// ...
+
+BackupTool::auth(function ($request) {
+    // return true / false;
+});
+```
 
 ### Testing
 
