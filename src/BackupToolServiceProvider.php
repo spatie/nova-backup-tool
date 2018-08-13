@@ -17,7 +17,7 @@ class BackupToolServiceProvider extends ServiceProvider
     public function register()
     {
         Route::prefix($this->getNovaUrl('backup-tool'))->middleware(Authenticate::class)->group(function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         });
     }
 
