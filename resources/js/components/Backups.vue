@@ -26,18 +26,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="backup in backups">
+            <tr v-for="backup in backups" :key="backup.id">
                 <td><span v-bind:class="spanClass(backup)">{{ backup.path }}</span></td>
                 <td><span v-bind:class="spanClass(backup)">{{ backup.date }}</span></td>
                 <td><span v-bind:class="spanClass(backup)">{{ backup.size }}</span></td>
                 <td class="text-right">
-                    <button @click="downloadBackup(backup)" class="mr-3 btn btn-default btn-primary">
-                        Download
-                    </button>
-                    <button @click="openDeleteModal(backup)" class="mr-3 btn btn-default btn-danger">
-                        Delete
+                    <button
+                        title="Download"
+                        class="appearance-none cursor-pointer text-70 hover:text-primary mr-3"
+                        @click.prevent="downloadBackup(backup)"
+                    >
+                        <icon type="download" />
                     </button>
 
+                    <button
+                        title="Delete"
+                        class="appearance-none cursor-pointer text-70 hover:text-primary mr-3"
+                        @click.prevent="openDeleteModal(backup)"
+                    >
+                        <icon type="delete" />
+                    </button>
                 </td>
             </tr>
             <tr v-if="backups.length === 0">
