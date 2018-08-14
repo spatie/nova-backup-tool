@@ -4,7 +4,7 @@ namespace Spatie\BackupTool;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Nova;
+use Spatie\BackupTool\Http\Middleware\Authorize;
 use Spatie\BackupTool\Middleware\Authenticate;
 
 class BackupToolServiceProvider extends ServiceProvider
@@ -12,21 +12,22 @@ class BackupToolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'BackupTool');
-    }
 
-    public function register()
-    {
-        Route::prefix($this->getNovaUrl('backup-tool'))->middleware(Authenticate::class)->group(function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->app->booted(function () {
+            $this->routes();
         });
     }
 
-    public function getNovaUrl(string $url = '/'): string
+    protected function routes()
     {
-        if (!class_exists(Nova::class)) {
-            return "/nova/{$url}";
+        if ($this->app->routesAreCached()) {
+            return;
         }
 
-        return Nova::path() . "/{$url}";
+        Route::middleware(['nova', Authorize::class])
+            ->prefix('/nova-vendor/spatie/backup-tool')
+            ->group(
+                __DIR__ . '/../routes/api.php'
+            );
     }
 }

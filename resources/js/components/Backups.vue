@@ -115,7 +115,7 @@
             },
 
             downloadBackup(backup) {
-                let downloadUrl = `${Nova.config.base}/backup-tool/download-backup?disk=${this.viewingDisk}&path=${backup.path}`;
+                let downloadUrl = `/nova-vendor/spatie/backup-tool/download-backup?disk=${this.viewingDisk}&path=${backup.path}`;
 
                 window.location = downloadUrl;
             },

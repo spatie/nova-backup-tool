@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BackupTool\Controllers;
+namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Support\Facades\Cache;
 use Spatie\Backup\Helpers\Format;

@@ -18,7 +18,7 @@ class BackupsControllerTest extends TestCase
     public function it_returns_no_results_if_no_backups_were_made()
     {
         $this
-            ->getJson('/nova/backup-tool/backups?disk=local')
+            ->getJson('/nova-vendor/spatie/backup-tool/backups?disk=local')
             ->assertSuccessful()
             ->assertJsonCount(0);
     }
@@ -27,13 +27,13 @@ class BackupsControllerTest extends TestCase
     public function it_can_create_a_backup()
     {
         $this
-            ->postJson('/nova/backup-tool/backups', ['disk' => 'local'])
+            ->postJson('/nova-vendor/spatie/backup-tool/backups', ['disk' => 'local'])
             ->assertSuccessful();
 
         Storage::disk('local')->assertExists('Laravel/2018-01-01-00-00-00.zip');
 
         $this
-            ->getJson('/nova/backup-tool/backups?disk=local')
+            ->getJson('/nova-vendor/spatie/backup-tool/backups?disk=local')
             ->assertSuccessful()
             ->assertJsonCount(1)
             ->assertJsonStructure([0 => ['path', 'date', 'size']]);
@@ -42,7 +42,7 @@ class BackupsControllerTest extends TestCase
     public function it_can_delete_a_backup()
     {
         $this
-            ->postJson('/nova/backup-tool/backups', ['disk' => 'local'])
+            ->postJson('/nova-vendor/spatie/backup-tool/backups', ['disk' => 'local'])
             ->assertSuccessful();
 
         $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
@@ -50,7 +50,7 @@ class BackupsControllerTest extends TestCase
         Storage::disk('local')->assertExists($pathToZip);
 
         $this
-            ->deleteJson('/nova/backup-tool/backups', [
+            ->deleteJson('/nova-vendor/spatie/backup-tool/backups', [
                 'disk' => 'local',
                 'file' => 'Laravel/2018-01-01-00-00-00.zip',
             ])
@@ -65,7 +65,7 @@ class BackupsControllerTest extends TestCase
     public function it_wont_delete_backups_for_an_invalid_disk_name()
     {
         $this
-            ->deleteJson('/nova/backup-tool/backups', [
+            ->deleteJson('/nova-vendor/spatie/backup-tool/backups', [
                 'disk' => 'does-not-exist',
                 'file' => 'Laravel/2018-01-01-00-00-00.zip',
             ])

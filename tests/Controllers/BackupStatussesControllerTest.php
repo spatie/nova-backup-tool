@@ -8,7 +8,7 @@ class BackupStatussesControllerTest extends TestCase
     public function it_can_get_all_backup_statusses()
     {
         $this
-            ->getJson('/nova/backup-tool/backup-statusses')
+            ->getJson('/nova-vendor/spatie/backup-tool/backup-statusses')
             ->assertSuccessful()
             ->assertJson([
                 [

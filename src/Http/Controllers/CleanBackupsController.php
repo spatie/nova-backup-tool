@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BackupTool\Controllers;
+namespace Spatie\BackupTool\Http\Controllers;
 
 use Spatie\Backup\BackupDestination\BackupDestinationFactory;
 use Spatie\Backup\Tasks\Cleanup\CleanupJob;

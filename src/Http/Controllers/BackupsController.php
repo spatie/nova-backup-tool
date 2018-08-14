@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BackupTool\Controllers;
+namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;

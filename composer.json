@@ -18,7 +18,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../nova"
+            "url": "../laravel-nova"
         }
     ],
     "require": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BackupTool\Controllers;
+namespace Spatie\BackupTool\Http\Controllers;
 
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;

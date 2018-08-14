@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Spatie\BackupTool\Controllers\BackupsController;
-use Spatie\BackupTool\Controllers\BackupStatussesController;
-use Spatie\BackupTool\Controllers\CleanBackupsController;
-use Spatie\BackupTool\Controllers\DownloadBackupController;
+use Spatie\BackupTool\Http\Controllers\BackupsController;
+use Spatie\BackupTool\Http\Controllers\BackupStatussesController;
+use Spatie\BackupTool\Http\Controllers\CleanBackupsController;
+use Spatie\BackupTool\Http\Controllers\DownloadBackupController;
 
 Route::get('backups', BackupsController::class . '@index');
 Route::post('backups', BackupsController::class . '@create');

@@ -4,6 +4,7 @@ namespace Spatie\BackupTool\Tests;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Backup\BackupServiceProvider;
@@ -23,9 +24,7 @@ abstract class TestCase extends Orchestra
 
         Storage::fake();
 
-        BackupTool::auth(function() {
-           return true;
-        });
+        Route::middlewareGroup('nova', []);
     }
 
     protected function getEnvironmentSetUp($app)

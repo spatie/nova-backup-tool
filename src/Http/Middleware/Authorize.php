@@ -1,18 +1,17 @@
 <?php
 
-namespace Spatie\BackupTool\Middleware;
+namespace Spatie\BackupTool\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Spatie\BackupTool\BackupTool;
-use Spatie\NovaTailTool\NovaTailTool;
 use Symfony\Component\HttpFoundation\Response;
 
-class Authenticate
+class Authorize
 {
     public function handle(Request $request, Closure $next): Response
     {
-        return BackupTool::check($request)
+        return app(BackupTool::class)->authorize($request)
             ? $next($request)
             : abort(403);
     }

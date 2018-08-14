@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BackupTool\Controllers;
+namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
