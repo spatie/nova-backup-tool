@@ -1,4 +1,4 @@
-# A Laravel Nova tool to display to backup your application
+# A Laravel Nova tool to backup your application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/nova-backup-tool.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-backup-tool)
 [![Build Status](https://img.shields.io/travis/spatie/nova-backup-tool/master.svg?style=flat-square)](https://travis-ci.org/spatie/nova-backup-tool)
