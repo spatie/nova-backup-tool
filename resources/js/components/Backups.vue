@@ -14,47 +14,34 @@
 
         <table cellpadding="0" cellspacing="0" class="table w-full">
             <thead>
-            <tr>
-                <th class="text-left">
-                    Path
-                </th>
-                <th class="text-left">
-                    Created at
-                </th>
-                <th class="text-left">
-                    Size
-                </th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th class="text-left">
+                        Path
+                    </th>
+                    <th class="text-left">
+                        Created at
+                    </th>
+                    <th class="text-left">
+                        Size
+                    </th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <tr v-for="backup in backups" :key="backup.id">
-                <td><span :class="spanClass(backup)">{{ backup.path }}</span></td>
-                <td><span :class="spanClass(backup)">{{ backup.date }}</span></td>
-                <td><span :class="spanClass(backup)">{{ backup.size }}</span></td>
-                <td class="text-right">
-                    <button
-                        title="Download"
-                        class="appearance-none cursor-pointer text-70 hover:text-primary mr-3"
-                        @click.prevent="downloadBackup(backup)"
-                    >
-                        <icon type="download" />
-                    </button>
-
-                    <button
-                        title="Delete"
-                        class="appearance-none cursor-pointer text-70 hover:text-primary mr-3"
-                        @click.prevent="openDeleteModal(backup)"
-                    >
-                        <icon type="delete" />
-                    </button>
-                </td>
-            </tr>
-            <tr v-if="backups.length === 0">
-                <td class="text-center" colspan="4">
-                    No backups present
-                </td>
-            </tr>
+                <backup
+                    v-for="backup in backups"
+                    v-bind="backup"
+                    :disk="activeDisk"
+                    :deletable="backups.length > 1"
+                    :deleting="!deleteModalOpen && deletingBackup && backup.path === deletingBackup.path"
+                    :key="backup.id"
+                    @delete="openDeleteModal(backup)"
+                />
+                <tr v-if="backups.length === 0">
+                    <td class="text-center" colspan="4">
+                        No backups present
+                    </td>
+                </tr>
             </tbody>
         </table>
 
@@ -82,6 +69,7 @@
 
 <script>
     import api from '../api';
+    import Backup from './Backup';
 
     export default {
         props: {
@@ -97,20 +85,12 @@
             }
         },
 
+        components: {
+            Backup,
+        },
+
         methods: {
-            downloadBackup(backup) {
-                let downloadUrl = `/nova-vendor/spatie/backup-tool/download-backup?disk=${this.activeDisk}&path=${backup.path}`;
-
-                window.location = downloadUrl;
-            },
-
             openDeleteModal(backup) {
-                if (this.backups.length === 1) {
-                    this.$toasted.show('Cannot delete the last backup!', {type: 'error'})
-
-                    return;
-                }
-
                 this.deleteModalOpen = true;
                 this.deletingBackup = backup;
             },
@@ -123,26 +103,10 @@
             confirmDelete() {
                 this.deleteModalOpen = false;
 
-                this.$toasted.show('Deleting backup...', {type: 'success'});
-
                 this.$emit('delete', {
                     disk: this.activeDisk,
                     path: this.deletingBackup.path,
                 });
-            },
-
-            isDeletingBackup(backup) {
-                if (this.deletingBackup === null) {
-                    return;
-                }
-
-                return backup.path === this.deletingBackup.path;
-            },
-
-            spanClass(backup) {
-                return {
-                    'text-60': this.isDeletingBackup(backup),
-                };
             },
         },
     }

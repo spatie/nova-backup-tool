@@ -82,7 +82,7 @@
             },
 
             createBackup() {
-                this.$toasted.show('Creating backup...', { type: 'success' });
+                this.$toasted.show('Creating a new backup in the background...', { type: 'success' });
 
                 return api.createBackup();
             },
