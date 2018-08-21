@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/nova-backup-tool.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/nova-backup-tool)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/nova-backup-tool.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-backup-tool)
 
-This [Nova](https://nova.laravel.com) tool lets a user:
+This [Nova](https://nova.laravel.com) tool lets you:
 - list all backups
 - create a new backup
 - download a backup
@@ -13,7 +13,7 @@ This [Nova](https://nova.laravel.com) tool lets a user:
 
 Behind the screens [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) is used.
 
-TODO: add screenshot
+![screenshot of the backup tool](https://spatie.github.io/nova-backup-tool/)
 
 ## Requirements
 
