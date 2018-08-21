@@ -1,21 +1,19 @@
 export default {
-    async getBackupStatusses() {
-        let response = await window.axios.get('/nova-vendor/spatie/backup-tool/backup-statusses');
-
-        return response.data;
+    getBackupStatusses() {
+        return window.axios.get('/nova-vendor/spatie/backup-tool/backup-statusses')
+            .then(response => response.data);
     },
 
-    async getBackups(disk) {
-        let response = await window.axios.get(`/nova-vendor/spatie/backup-tool/backups?disk=${disk}`);
-
-        return response.data;
+    getBackups(disk) {
+        return window.axios.get(`/nova-vendor/spatie/backup-tool/backups?disk=${disk}`)
+            .then(response => response.data);
     },
 
     createBackup() {
-        window.axios.post(`/nova-vendor/spatie/backup-tool/backups`);
+        return window.axios.post(`/nova-vendor/spatie/backup-tool/backups`);
     },
 
-    deleteBackup(disk, path) {
-        window.axios.delete(`/nova-vendor/spatie/backup-tool/backups`, { params: {disk, path}});
+    deleteBackup({ disk, path }) {
+        return window.axios.delete(`/nova-vendor/spatie/backup-tool/backups`, { params: { disk, path } });
     }
 }

@@ -18,8 +18,8 @@ class BackupStatussesController extends ApiController
                     return [
                         'name' => $backupDestinationStatus->backupName(),
                         'disk' => $backupDestinationStatus->diskName(),
-                        'reachable' => Format::emoji($backupDestinationStatus->isReachable()),
-                        'healthy' => Format::emoji($backupDestinationStatus->isHealthy()),
+                        'reachable' => $backupDestinationStatus->isReachable(),
+                        'healthy' => $backupDestinationStatus->isHealthy(),
                         'amount' => $backupDestinationStatus->amountOfBackups(),
                         'newest' => $backupDestinationStatus->dateOfNewestBackup()
                             ? $backupDestinationStatus->dateOfNewestBackup()->diffForHumans()
