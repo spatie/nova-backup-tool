@@ -23,7 +23,7 @@ Make sure you meet [the requirements for installing spatie/laravel-backup](https
 
 First you must install [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) into your Laravel app. The installation instructions are [here](https://docs.spatie.be/laravel-backup/v5/installation-and-setup). When successfull running `php artisan backup:create` on the terminal should create a backup and `php artisan backup:list` should return a list will an overview of all backup disks.
 
-You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
+You can install the nova tool in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
 composer require spatie/nova-backup-tool
