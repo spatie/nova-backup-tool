@@ -45,25 +45,11 @@ public function register()
 }
 ```
 
+Finally you should setup [a queue](https://laravel.com/docs/master/queues). This tool doesn't care what kind of queue as long as you don't use the `sync` driver.
+
 ## Usage
 
-Click on the "Backups" menu item in your Nova app to see the log.
-
-### Authentication
-
-By default the tool can only be seen and used in the local environment. To define a more specific access policy for the tool, you should use the `BackupTool::auth` method. The `auth` method accepts a callback which should return true or false, indicating whether the user should have access to the tool. Typically, you should call `BackupTool::auth` in the boot method a service provider:
-
-```php
-// in a service provider
-
-use Spatie\BackupTool\BackupTool;
-
-// ...
-
-BackupTool::auth(function ($request) {
-    // return true / false;
-});
-```
+Click on the "Backups" menu item in your Nova app to see the backup tool.
 
 ### Testing
 
