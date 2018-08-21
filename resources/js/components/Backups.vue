@@ -1,16 +1,18 @@
 <template>
     <div>
-        <div v-if="disks.length > 1" class="py-3 flex items-center border-b border-50">
-            <div>
-                <div class="ml-4">
-                    <select v-model="viewingDisk" class="form-control form-select mr-2">
-                        <option v-for="disk in disks" :value="disk" selected>{{ disk}}</option>
-                    </select>
-                </div>
-            </div>
+        <div v-if="disks.length > 1" class="p-3 flex items-center border-b border-50">
+            <select
+                class="form-control form-select"
+                :value="activeDisk"
+                @input="$emit('update:activeDisk', $event.target.value)"
+            >
+                <option v-for="disk in disks" :key="disk" :value="disk">
+                    {{ disk }}
+                </option>
+            </select>
         </div>
 
-        <table cellpadding="0" cellspacing="0" data-testid="resource-table" class="table w-full">
+        <table cellpadding="0" cellspacing="0" class="table w-full">
             <thead>
             <tr>
                 <th class="text-left">
@@ -27,9 +29,9 @@
             </thead>
             <tbody>
             <tr v-for="backup in backups" :key="backup.id">
-                <td><span v-bind:class="spanClass(backup)">{{ backup.path }}</span></td>
-                <td><span v-bind:class="spanClass(backup)">{{ backup.date }}</span></td>
-                <td><span v-bind:class="spanClass(backup)">{{ backup.size }}</span></td>
+                <td><span :class="spanClass(backup)">{{ backup.path }}</span></td>
+                <td><span :class="spanClass(backup)">{{ backup.date }}</span></td>
+                <td><span :class="spanClass(backup)">{{ backup.size }}</span></td>
                 <td class="text-right">
                     <button
                         title="Download"
@@ -49,8 +51,8 @@
                 </td>
             </tr>
             <tr v-if="backups.length === 0">
-                <td colspan="4">
-                    No backups present.
+                <td class="text-center" colspan="4">
+                    No backups present
                 </td>
             </tr>
             </tbody>
@@ -59,15 +61,18 @@
         <portal to="modals">
             <transition name="fade">
                 <delete-resource-modal
-                  v-if="deleteModalOpen"
-                  @confirm="confirmDelete"
-                  @close="closeDeleteModal"
-                  mode="delete"
+                    v-if="deleteModalOpen"
+                    @confirm="confirmDelete"
+                    @close="closeDeleteModal"
+                    mode="delete"
                 >
                     <div class="p-8">
-                        <heading :level="2" class="mb-6">Delete backup</heading>
-                        <p class="text-80 leading-normal">Are you sure you want to delete the backup created at {{
-                            deletingBackup.date }}?</p>
+                        <heading :level="2" class="mb-6">
+                            Delete backup
+                        </heading>
+                        <p class="text-80 leading-normal">
+                            Are you sure you want to delete the backup created at {{ deletingBackup.date }}?
+                        </p>
                     </div>
                 </delete-resource-modal>
             </transition>
@@ -79,51 +84,22 @@
     import api from '../api';
 
     export default {
-        props: ['disks'],
+        props: {
+            disks: { required: true, type: Array },
+            activeDisk: { required: true, type: String },
+            backups: { required: true, type: Array },
+        },
 
         data() {
             return {
-                backups: [],
-                viewingDisk: '',
-                poller: null,
-                deleteModalOpen: false,
                 deletingBackup: null,
+                deleteModalOpen: false,
             }
         },
 
-        watch: {
-            disks: function () {
-                if (this.poller !== null) {
-                    return;
-                }
-
-                this.pollForBackups();
-            },
-        },
-
-        beforeDestroy() {
-            window.clearInterval(this.poller);
-        },
-
         methods: {
-            pollForBackups() {
-                if (!this.disks.length) {
-                    return;
-                }
-
-                this.viewingDisk = this.disks[0];
-
-                this.getBackups();
-
-                this.poller = window.setInterval(() => this.getBackups(), 1000);
-            },
-
-            async getBackups() {
-                this.backups = await api.getBackups(this.viewingDisk);
-            },
-
             downloadBackup(backup) {
-                let downloadUrl = `/nova-vendor/spatie/backup-tool/download-backup?disk=${this.viewingDisk}&path=${backup.path}`;
+                let downloadUrl = `/nova-vendor/spatie/backup-tool/download-backup?disk=${this.activeDisk}&path=${backup.path}`;
 
                 window.location = downloadUrl;
             },
@@ -144,12 +120,15 @@
                 this.deletingBackup = null;
             },
 
-            async confirmDelete() {
+            confirmDelete() {
                 this.deleteModalOpen = false;
 
                 this.$toasted.show('Deleting backup...', {type: 'success'});
 
-                await api.deleteBackup(this.viewingDisk, this.deletingBackup.path);
+                this.$emit('delete', {
+                    disk: this.activeDisk,
+                    path: this.deletingBackup.path,
+                });
             },
 
             isDeletingBackup(backup) {
