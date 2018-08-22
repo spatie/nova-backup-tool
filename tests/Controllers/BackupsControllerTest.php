@@ -70,7 +70,7 @@ class BackupsControllerTest extends TestCase
                 'file' => 'Laravel/2018-01-01-00-00-00.zip',
             ])
             ->assertJsonValidationErrors([
-                'disk'
+                'disk',
             ]);
     }
 }

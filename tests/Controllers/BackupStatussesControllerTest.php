@@ -17,7 +17,7 @@ class BackupStatussesControllerTest extends TestCase
                     'amount' => 0,
                     'newest' => 'No backups present',
                     'usedStorage' => '0 KB',
-                ]
+                ],
             ]);
     }
 }

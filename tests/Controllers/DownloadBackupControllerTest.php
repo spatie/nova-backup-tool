@@ -43,7 +43,5 @@ class DownloadBackupControllerTest extends TestCase
             ->assertSuccessful();
 
         Storage::disk('local')->assertExists('Laravel/2018-01-01-00-00-00.zip');
-
-
     }
 }
