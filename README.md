@@ -12,7 +12,9 @@ This [Nova](https://nova.laravel.com) tool lets you:
 
 Behind the scenes [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) is used.
 
-![movie of the backup tool](https://spatie.github.io/nova-backup-tool/screenshot.png)
+![screenshot of the backup tool](https://spatie.github.io/nova-backup-tool/screenshot.png)
+
+You can see the tool in action in [this video on YouTube](https://www.youtube.com/watch?v=9wSi2ByavX8).
 
 ## Requirements
 
