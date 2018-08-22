@@ -3,14 +3,13 @@
 namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Spatie\Backup\BackupDestination\Backup;
-use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Helpers\Format;
-use Spatie\BackupTool\File;
-use Spatie\BackupTool\Jobs\CreateBackupJob;
-use Spatie\BackupTool\Rules\BackupDisk;
+use Illuminate\Support\Facades\Cache;
 use Spatie\BackupTool\Rules\PathToZip;
+use Spatie\BackupTool\Rules\BackupDisk;
+use Spatie\Backup\BackupDestination\Backup;
+use Spatie\BackupTool\Jobs\CreateBackupJob;
+use Spatie\Backup\BackupDestination\BackupDestination;
 
 class BackupsController extends ApiController
 {
@@ -35,7 +34,6 @@ class BackupsController extends ApiController
                 ->toArray();
         });
     }
-
 
     public function create()
     {

@@ -3,8 +3,8 @@
 namespace Spatie\BackupTool\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Foundation\Events\Dispatchable;
 use Spatie\Backup\Tasks\Backup\BackupJobFactory;
 
 class CreateBackupJob

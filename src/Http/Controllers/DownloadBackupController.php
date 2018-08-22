@@ -2,12 +2,12 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
-use Spatie\Backup\BackupDestination\Backup;
-use Spatie\Backup\BackupDestination\BackupDestination;
-use Spatie\BackupTool\Rules\BackupDisk;
 use Spatie\BackupTool\Rules\PathToZip;
+use Spatie\BackupTool\Rules\BackupDisk;
+use Spatie\Backup\BackupDestination\Backup;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Spatie\Backup\BackupDestination\BackupDestination;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DownloadBackupController extends ApiController
@@ -21,7 +21,7 @@ class DownloadBackupController extends ApiController
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
 
-        $backup = $backupDestination->backups()->first(function(Backup $backup) use ($validated) {
+        $backup = $backupDestination->backups()->first(function (Backup $backup) use ($validated) {
             return $backup->path() === $validated['path'];
         });
 
@@ -40,7 +40,7 @@ class DownloadBackupController extends ApiController
             'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
             'Content-Type' => 'application/zip',
             'Content-Length' => $backup->size(),
-            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+            'Content-Disposition' => 'attachment; filename="'.$fileName.'"',
             'Pragma' => 'public',
         ];
 

@@ -3,10 +3,8 @@
 namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Support\Facades\Cache;
-use Spatie\Backup\Helpers\Format;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatus;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
-use Spatie\BackupTool\File;
 
 class BackupStatussesController extends ApiController
 {
