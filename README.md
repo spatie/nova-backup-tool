@@ -29,19 +29,19 @@ You can install the nova tool in to a Laravel app that uses [Nova](https://nova.
 composer require spatie/nova-backup-tool
 ```
 
-Next up, you must register the tool with Nova. This is typically done in the `register` method of the `NovaServiceProvider`.
+Next up, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
 
 ```php
 // in app/Providers/NovaServiceProvder.php
 
 // ...
 
-public function register()
+public function tools()
 {
-    Nova::tools([
+   return [
         // ...
         new \Spatie\BackupTool\BackupTool(),
-    ]);
+    );
 }
 ```
 
