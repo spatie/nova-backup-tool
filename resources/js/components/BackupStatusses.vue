@@ -25,7 +25,7 @@
                 <td>
                     <svg
                         :is="backupStatus.healthy ? 'icon-healthy' : 'icon-unhealthy'"
-                        height="1.5rem"
+                        height="24px"
                     />
                 </td>
                 <td>{{ backupStatus.amount }}</td>
