@@ -14,7 +14,7 @@
             "homepage": "https://spatie.be",
             "role": "Developer"
         }
-    ]
+    ],
     "require": {
         "php": ">=7.1.0",
         "laravel/nova": "*",
