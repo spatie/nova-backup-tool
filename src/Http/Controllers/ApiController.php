@@ -2,7 +2,6 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 abstract class ApiController

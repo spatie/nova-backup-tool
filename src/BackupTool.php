@@ -2,10 +2,8 @@
 
 namespace Spatie\BackupTool;
 
-use Closure;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
-use Symfony\Component\HttpFoundation\Request;
 
 class BackupTool extends Tool
 {
