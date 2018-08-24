@@ -68,46 +68,45 @@
 </template>
 
 <script>
-    import api from '../api';
-    import Backup from './Backup';
+import Backup from './Backup';
 
-    export default {
-        props: {
-            disks: { required: true, type: Array },
-            activeDisk: { required: true, type: String },
-            backups: { required: true, type: Array },
+export default {
+    props: {
+        disks: { required: true, type: Array },
+        activeDisk: { required: true, type: String },
+        backups: { required: true, type: Array },
+    },
+
+    data() {
+        return {
+            deletingBackup: null,
+            deleteModalOpen: false,
+        };
+    },
+
+    components: {
+        Backup,
+    },
+
+    methods: {
+        openDeleteModal(backup) {
+            this.deleteModalOpen = true;
+            this.deletingBackup = backup;
         },
 
-        data() {
-            return {
-                deletingBackup: null,
-                deleteModalOpen: false,
-            }
+        closeDeleteModal() {
+            this.deleteModalOpen = false;
+            this.deletingBackup = null;
         },
 
-        components: {
-            Backup,
+        confirmDelete() {
+            this.deleteModalOpen = false;
+
+            this.$emit('delete', {
+                disk: this.activeDisk,
+                path: this.deletingBackup.path,
+            });
         },
-
-        methods: {
-            openDeleteModal(backup) {
-                this.deleteModalOpen = true;
-                this.deletingBackup = backup;
-            },
-
-            closeDeleteModal() {
-                this.deleteModalOpen = false;
-                this.deletingBackup = null;
-            },
-
-            confirmDelete() {
-                this.deleteModalOpen = false;
-
-                this.$emit('delete', {
-                    disk: this.activeDisk,
-                    path: this.deletingBackup.path,
-                });
-            },
-        },
-    }
+    },
+};
 </script>

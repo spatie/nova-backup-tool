@@ -5,5 +5,5 @@ Nova.booting((Vue, router) => {
             path: '/backups',
             component: require('./components/BackupTool'),
         },
-    ])
-})
+    ]);
+});

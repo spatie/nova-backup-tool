@@ -28,79 +28,79 @@
 </template>
 
 <script>
-    import api from '../api';
-    import Backups from './Backups';
-    import BackupStatusses from './BackupStatusses';
+import api from '../api';
+import Backups from './Backups';
+import BackupStatusses from './BackupStatusses';
 
-    export default {
-        components: {
-            Backups,
-            BackupStatusses,
+export default {
+    components: {
+        Backups,
+        BackupStatusses,
+    },
+
+    computed: {
+        disks() {
+            return this.backupStatusses.map(backupStatus => backupStatus.disk);
         },
+    },
 
-        computed: {
-            disks() {
-                return this.backupStatusses.map(backupStatus => backupStatus.disk);
-            },
-        },
+    data: () => ({
+        loaded: false,
+        activeDisk: null,
+        activeDiskBackups: [],
+        backupStatusses: [],
+    }),
 
-        data: () =>  ({
-            loaded: false,
-            activeDisk: null,
-            activeDiskBackups: [],
-            backupStatusses: [],
-        }),
+    async created() {
+        await this.updateBackupStatusses();
+        await this.updateActiveDiskBackups();
 
-        async created() {
-            await this.updateBackupStatusses();
-            await this.updateActiveDiskBackups();
+        this.loaded = true;
 
-            this.loaded = true;
+        this.startPolling();
+    },
 
-            this.startPolling();
-        },
+    methods: {
+        updateBackupStatusses() {
+            return api.getBackupStatusses().then(backupStatusses => {
+                this.backupStatusses = backupStatusses;
 
-        methods: {
-            updateBackupStatusses() {
-                return api.getBackupStatusses().then(backupStatusses => {
-                    this.backupStatusses = backupStatusses;
-
-                    if (!this.activeDisk) {
-                        this.activeDisk = backupStatusses[0].disk;
-                    }
-                });
-            },
-
-            updateActiveDiskBackups() {
                 if (!this.activeDisk) {
-                    return;
+                    this.activeDisk = backupStatusses[0].disk;
                 }
-
-                return api.getBackups(this.activeDisk).then(backups => {
-                    this.activeDiskBackups = backups;
-                });
-            },
-
-            createBackup() {
-                this.$toasted.show('Creating a new backup in the background...', { type: 'success' });
-
-                return api.createBackup();
-            },
-
-            deleteBackup({ disk, path }) {
-                return api.deleteBackup({ disk, path });
-            },
-
-            startPolling() {
-                const poller = window.setInterval(() => {
-                    this.updateBackupStatusses();
-                    this.updateActiveDiskBackups();
-                }, 1000);
-
-                this.$once('hook:beforeDestroy', () => {
-                    window.clearInterval(poller);
-                });
-            },
+            });
         },
-    }
+
+        updateActiveDiskBackups() {
+            if (!this.activeDisk) {
+                return;
+            }
+
+            return api.getBackups(this.activeDisk).then(backups => {
+                this.activeDiskBackups = backups;
+            });
+        },
+
+        createBackup() {
+            this.$toasted.show('Creating a new backup in the background...', { type: 'success' });
+
+            return api.createBackup();
+        },
+
+        deleteBackup({ disk, path }) {
+            return api.deleteBackup({ disk, path });
+        },
+
+        startPolling() {
+            const poller = window.setInterval(() => {
+                this.updateBackupStatusses();
+                this.updateActiveDiskBackups();
+            }, 1000);
+
+            this.$once('hook:beforeDestroy', () => {
+                window.clearInterval(poller);
+            });
+        },
+    },
+};
 </script>

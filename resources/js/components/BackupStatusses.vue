@@ -37,17 +37,17 @@
 </template>
 
 <script>
-    import IconHealthy from './icons/IconHealthy';
-    import IconUnhealthy from './icons/IconUnhealthy';
+import IconHealthy from './icons/IconHealthy';
+import IconUnhealthy from './icons/IconUnhealthy';
 
-    export default {
-        props: {
-            backupStatusses: { required: true, type: Array },
-        },
+export default {
+    props: {
+        backupStatusses: { required: true, type: Array },
+    },
 
-        components: {
-            IconHealthy,
-            IconUnhealthy,
-        },
-    }
+    components: {
+        IconHealthy,
+        IconUnhealthy,
+    },
+};
 </script>
