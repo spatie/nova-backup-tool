@@ -2,13 +2,13 @@
 
 namespace Spatie\BackupTool\Tests;
 
-class BackupStatussesControllerTest extends TestCase
+class BackupStatusesControllerTest extends TestCase
 {
     /** @test */
-    public function it_can_get_all_backup_statusses()
+    public function it_can_get_all_backup_statuses()
     {
         $this
-            ->getJson('/nova-vendor/spatie/backup-tool/backup-statusses')
+            ->getJson('/nova-vendor/spatie/backup-tool/backup-statuses')
             ->assertSuccessful()
             ->assertJson([
                 [

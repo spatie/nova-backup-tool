@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="backupStatus in backupStatusses" :key="backupStatus.disk">
+            <tr v-for="backupStatus in backupStatuses" :key="backupStatus.disk">
                 <td>{{ backupStatus.disk }}</td>
                 <td>
                     <svg
@@ -42,7 +42,7 @@ import IconUnhealthy from './icons/IconUnhealthy';
 
 export default {
     props: {
-        backupStatusses: { required: true, type: Array },
+        backupStatuses: { required: true, type: Array },
     },
 
     components: {

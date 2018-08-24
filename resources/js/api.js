@@ -1,7 +1,7 @@
 export default {
-    getBackupStatusses() {
+    getBackupStatuses() {
         return window.axios
-            .get('/nova-vendor/spatie/backup-tool/backup-statusses')
+            .get('/nova-vendor/spatie/backup-tool/backup-statuses')
             .then(response => response.data);
     },
 

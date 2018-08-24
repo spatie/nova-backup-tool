@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Cache;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatus;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
 
-class BackupStatussesController extends ApiController
+class BackupStatusesController extends ApiController
 {
     public function index()
     {
-        return Cache::remember('backup-statusses', 1 / 15, function () {
+        return Cache::remember('backup-statuses', 1 / 15, function () {
             return BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitorBackups'))
                 ->map(function (BackupDestinationStatus $backupDestinationStatus) {
                     return [

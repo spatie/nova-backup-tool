@@ -10,8 +10,8 @@
         </div>
 
         <card class="mb-6">
-            <backup-statusses
-                :backup-statusses="backupStatusses"
+            <backup-statuses
+                :backup-statuses="backupStatuses"
             />
         </card>
 
@@ -30,17 +30,17 @@
 <script>
 import api from '../api';
 import Backups from './Backups';
-import BackupStatusses from './BackupStatusses';
+import BackupStatuses from './BackupStatuses';
 
 export default {
     components: {
         Backups,
-        BackupStatusses,
+        BackupStatuses,
     },
 
     computed: {
         disks() {
-            return this.backupStatusses.map(backupStatus => backupStatus.disk);
+            return this.backupStatuses.map(backupStatus => backupStatus.disk);
         },
     },
 
@@ -48,11 +48,11 @@ export default {
         loaded: false,
         activeDisk: null,
         activeDiskBackups: [],
-        backupStatusses: [],
+        backupStatuses: [],
     }),
 
     async created() {
-        await this.updateBackupStatusses();
+        await this.updateBackupStatuses();
         await this.updateActiveDiskBackups();
 
         this.loaded = true;
@@ -61,12 +61,12 @@ export default {
     },
 
     methods: {
-        updateBackupStatusses() {
-            return api.getBackupStatusses().then(backupStatusses => {
-                this.backupStatusses = backupStatusses;
+        updateBackupStatuses() {
+            return api.getBackupStatuses().then(backupStatuses => {
+                this.backupStatuses = backupStatuses;
 
                 if (!this.activeDisk) {
-                    this.activeDisk = backupStatusses[0].disk;
+                    this.activeDisk = backupStatuses[0].disk;
                 }
             });
         },
@@ -93,7 +93,7 @@ export default {
 
         startPolling() {
             const poller = window.setInterval(() => {
-                this.updateBackupStatusses();
+                this.updateBackupStatuses();
                 this.updateActiveDiskBackups();
             }, 1000);
 
