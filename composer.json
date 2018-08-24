@@ -1,6 +1,6 @@
 {
     "name": "spatie/nova-backup-tool",
-    "description": "A Laravel Nova tool to display the application log.",
+    "description": "A Laravel Nova tool to backup your application.",
     "keywords": [
         "laravel",
         "nova"

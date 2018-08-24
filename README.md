@@ -22,7 +22,7 @@ Make sure you meet [the requirements for installing spatie/laravel-backup](https
 
 ## Installation
 
-First you must install [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) into your Laravel app. The installation instructions are [here](https://docs.spatie.be/laravel-backup/v5/installation-and-setup). When successfull running `php artisan backup:create` on the terminal should create a backup and `php artisan backup:list` should return a list will an overview of all backup disks.
+First you must install [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) into your Laravel app. The installation instructions are [here](https://docs.spatie.be/laravel-backup/v5/installation-and-setup). When successfull running `php artisan backup:create` on the terminal should create a backup and `php artisan backup:list` should return a list with an overview of all backup disks.
 
 You can install the nova tool in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
@@ -39,10 +39,10 @@ Next up, you must register the tool with Nova. This is typically done in the `to
 
 public function tools()
 {
-   return [
+    return [
         // ...
         new \Spatie\BackupTool\BackupTool(),
-    );
+    ];
 }
 ```
 
@@ -87,7 +87,7 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
+Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie).
 All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License
