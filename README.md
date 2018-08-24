@@ -1,6 +1,7 @@
 # A Laravel Nova tool to backup your application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/nova-backup-tool.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-backup-tool)
+![CircleCI branch](https://img.shields.io/circleci/project/github/spatie/nova-backup-tool/master.svg?style=flat-square)
 [![StyleCI](https://github.styleci.io/repos/143442765/shield?branch=master)](https://github.styleci.io/repos/143442765)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/nova-backup-tool.svg?style=flat-square)](https://packagist.org/packages/spatie/nova-backup-tool)
 

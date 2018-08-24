@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/node
+    steps:
+    - checkout
+    - run:
+        name: Install dependencies
+        command: yarn
+    - run:
+        name: Run lint
+        command: yarn lint
+    - run:
+        name: Run prettier
+        command: yarn check-format
