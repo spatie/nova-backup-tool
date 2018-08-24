@@ -7,11 +7,17 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "format": "prettier --write 'resources/js/**/*.{css,js,vue}'",
+        "lint": "eslint resources/js --fix --ext js,vue"
     },
     "devDependencies": {
         "cross-env": "^5.0.0",
-        "laravel-mix": "^1.0"
+        "eslint": "^4.19.1",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-vue": "^4.4.0",
+        "laravel-mix": "^1.0",
+        "prettier": "^1.14.2"
     },
     "dependencies": {
         "vue": "^2.5.0"

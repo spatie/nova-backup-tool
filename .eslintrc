@@ -1,0 +1,20 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/essential",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "globals": {
+        "Nova": true
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "vue/html-indent": ["error", 4]
+    }
+}
