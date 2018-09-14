@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 1.0.2 - 2018-09-14
+
+- fix backup-statusses endpoint
+
 ## 1.0.1 - 2018-08-25
 
 - fix download icon
