@@ -25,6 +25,7 @@ class BackupStatusesController extends ApiController
                         'usedStorage' => $backupDestinationStatus->humanReadableUsedStorage(),
                     ];
                 })
+                ->values()
                 ->toArray();
         });
     }
