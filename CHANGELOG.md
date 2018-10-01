@@ -2,6 +2,11 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+
+## 1.0.3 - 2018-10-01
+
+- make the tool title translatable
+
 ## 1.0.2 - 2018-09-14
 
 - fix backup-statusses endpoint
