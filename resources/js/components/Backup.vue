@@ -8,7 +8,7 @@
                 :href="downloadUrl"
                 target="_blank"
                 rel="noopener nofollow"
-                title="Download"
+                :title="__('Download')"
                 class="appearance-none cursor-pointer text-70 hover:text-primary mr-3"
             >
                 <icon type="download" view-box="0 0 24 24" width="20" height="20" />
