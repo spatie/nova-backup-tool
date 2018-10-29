@@ -2,6 +2,9 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 1.1.0 - 2018-10-30
+
+- make strings translatable
 
 ## 1.0.3 - 2018-10-01
 
