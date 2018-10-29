@@ -3,19 +3,19 @@
         <thead>
             <tr>
                 <th class="text-left rounded-tl">
-                    Disk
+                    {{ __('Disk') }}
                 </th>
                 <th class="text-left">
-                    Healthy
+                    {{ __('Healthy') }}
                 </th>
                 <th class="text-left">
-                    Amount of backups
+                    {{ __('Amount of backups') }}
                 </th>
                 <th class="text-left">
-                    Newest backup
+                    {{ __('Newest backup') }}
                 </th>
                 <th class="text-left rounded-tr">
-                    Used Storage
+                    {{ __('Used Storage') }}
                 </th>
             </tr>
         </thead>

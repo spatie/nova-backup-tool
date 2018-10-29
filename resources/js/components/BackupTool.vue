@@ -2,10 +2,10 @@
     <div v-if="loaded">
         <div class="flex mb-6 items-center justify-between">
             <heading>
-                Backups
+                {{ __('Backups') }}
             </heading>
             <button @click="createBackup" class="btn btn-default btn-primary">
-                Create Backup
+                {{ __('Create Backup') }}
             </button>
         </div>
 
@@ -82,7 +82,9 @@ export default {
         },
 
         createBackup() {
-            this.$toasted.show('Creating a new backup in the background...', { type: 'success' });
+            this.$toasted.show(this.__('Creating a new backup in the background...'), {
+                type: 'success',
+            });
 
             return api.createBackup();
         },

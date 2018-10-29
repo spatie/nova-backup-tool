@@ -47,6 +47,32 @@ public function tools()
 }
 ```
 
+##### Optionally
+nova-backup-tool may be fully localized using localization services. 
+Your application will contain a `resources/lang/vendor/nova` translation directory. 
+Here you can add the following values to the JSON translations file to.
+
+```json
+// resources/lang/vendor/nova/nl.json
+{
+    "Create Backup": "Back-up Maken",
+    "Delete backup": "Back-up verwijderen",
+    "No backups present": "Geen back-ups aanwezig",
+    "Amount of backups": "Aantal back-ups",
+    "Newest backup": "Nieuwste back-up",
+    "Size": "Grootte",
+    "Path": "Pad",
+    "Disk": "Schijf",
+    "Backups": "Back-ups",
+    "Healthy": "Gezond",
+    "Download": "Download",
+    "Used Storage": "Gebruikte opslag",
+    "Created at": "Aangemaakt op",
+    "Are you sure you want to delete the backup created at :date ?": "Weet u zeker dat u de back-up wilt verwijdered die aangemaakt is op :date",
+    "Creating a new backup in the background...": "Een nieuwe back-up in de achtergrond maken...",
+}
+```
+
 Finally you should setup [a queue](https://laravel.com/docs/master/queues). This tool doesn't care what kind of queue as long as you don't use the `sync` driver.
 
 ## Usage

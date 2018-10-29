@@ -16,13 +16,13 @@
             <thead>
                 <tr>
                     <th class="text-left">
-                        Path
+                        {{ __('Path') }}
                     </th>
                     <th class="text-left">
-                        Created at
+                        {{ __('Created at') }}
                     </th>
                     <th class="text-left">
-                        Size
+                        {{ __('Size') }}
                     </th>
                     <th></th>
                 </tr>
@@ -39,7 +39,7 @@
                 />
                 <tr v-if="backups.length === 0">
                     <td class="text-center" colspan="4">
-                        No backups present
+                        {{ __('No backups present') }}
                     </td>
                 </tr>
             </tbody>
@@ -55,10 +55,10 @@
                 >
                     <div class="p-8">
                         <heading :level="2" class="mb-6">
-                            Delete backup
+                            {{ __('Delete backup') }}
                         </heading>
                         <p class="text-80 leading-normal">
-                            Are you sure you want to delete the backup created at {{ deletingBackup.date }}?
+                            {{ __('Are you sure you want to delete the backup created at :date ?', {date: deletingBackup.date}) }}
                         </p>
                     </div>
                 </delete-resource-modal>
