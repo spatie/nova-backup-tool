@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 1.1.1 - 2018-12-29
+
+- allow laravel-backup v6
+
 ## 1.1.0 - 2018-10-30
 
 - make strings translatable
