@@ -20,7 +20,7 @@ class BackupStatusesController extends ApiController
                         'reachable' => $backupDestinationStatus->backupDestination()->isReachable(),
                         'healthy' => $backupDestinationStatus->isHealthy(),
                         'amount' => $backupDestinationStatus->backupDestination()->backups()->count(),
-                        'newest' => $backupDestinationStatus->backupDestination()->newestBackup()->date()
+                        'newest' => $backupDestinationStatus->backupDestination()->newestBackup()
                             ? $backupDestinationStatus->backupDestination()->newestBackup()->date()->diffForHumans()
                             : 'No backups present',
                         'usedStorage' => Format::humanReadableSize($backupDestinationStatus->backupDestination()->usedStorage()),
