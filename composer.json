@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1.0",
+        "php": "^7.2",
         "laravel/nova": "*",
         "spatie/laravel-backup": "^6.0",
         "symfony/process": "^4.1"
