@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 2.0.0 - 2019-01-01
+
+- add support for laravel-backup v6, drop support for v5
+
 ## 1.1.2 - 2019-01-01
 
 - disallow laravel-backup v6
