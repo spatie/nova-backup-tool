@@ -36,6 +36,15 @@ abstract class TestCase extends Orchestra
 
         $app['config']->set('database.default', 'db1');
 
+        $app['config']->set('backup.backup.name', 'Laravel');
+
+        $app['config']->set('backup.monitor_backups', [
+            [
+                'name' => 'Laravel',
+                'disks' => ['local'],
+            ],
+        ]);
+
         $app['config']->set('backup.backup.source.databases', ['db1']);
 
         $app['config']->set('mail.driver', 'log');
