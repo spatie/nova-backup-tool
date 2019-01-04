@@ -19,11 +19,11 @@ You can see the tool in action in [this video on YouTube](https://www.youtube.co
 
 ## Requirements
 
-Make sure you meet [the requirements for installing spatie/laravel-backup](https://docs.spatie.be/laravel-backup/v5/requirements).
+Make sure you meet [the requirements for installing spatie/laravel-backup](https://docs.spatie.be/laravel-backup/v6/requirements).
 
 ## Installation
 
-First you must install [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) into your Laravel app. The installation instructions are [here](https://docs.spatie.be/laravel-backup/v5/installation-and-setup). When successfull running `php artisan backup:run` on the terminal should create a backup and `php artisan backup:list` should return a list with an overview of all backup disks.
+First you must install [spatie/laravel-backup](https://docs.spatie.be/laravel-backup) into your Laravel app. The installation instructions are [here](https://docs.spatie.be/laravel-backup/v6/installation-and-setup). When successfull running `php artisan backup:run` on the terminal should create a backup and `php artisan backup:list` should return a list with an overview of all backup disks.
 
 You can install the nova tool in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
