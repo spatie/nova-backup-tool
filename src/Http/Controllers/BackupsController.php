@@ -51,7 +51,6 @@ class BackupsController extends ApiController
 
         $backupDestination
             ->backups()
-            ->dump()
             ->first(function (Backup $backup) use ($validated) {
                 return $backup->path() === $validated['path'];
             })
