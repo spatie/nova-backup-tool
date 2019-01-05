@@ -39,6 +39,7 @@ class BackupsControllerTest extends TestCase
             ->assertJsonStructure([0 => ['path', 'date', 'size']]);
     }
 
+    /** @test */
     public function it_can_delete_a_backup()
     {
         $this
