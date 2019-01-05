@@ -53,7 +53,7 @@ class BackupsControllerTest extends TestCase
         $this
             ->deleteJson('/nova-vendor/spatie/backup-tool/backups', [
                 'disk' => 'local',
-                'file' => 'Laravel/2018-01-01-00-00-00.zip',
+                'path' => 'Laravel/2018-01-01-00-00-00.zip',
             ])
             ->assertSuccessful();
 
