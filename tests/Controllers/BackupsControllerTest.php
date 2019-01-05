@@ -46,9 +46,7 @@ class BackupsControllerTest extends TestCase
             ->postJson('/nova-vendor/spatie/backup-tool/backups', ['disk' => 'local'])
             ->assertSuccessful();
 
-        $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
-
-        Storage::disk('local')->assertExists($pathToZip);
+        Storage::disk('local')->assertExists('Laravel/2018-01-01-00-00-00.zip');
 
         $this
             ->deleteJson('/nova-vendor/spatie/backup-tool/backups', [
@@ -57,9 +55,7 @@ class BackupsControllerTest extends TestCase
             ])
             ->assertSuccessful();
 
-        $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
-
-        Storage::disk('local')->assertMissing($pathToZip);
+        Storage::disk('local')->assertMissing('Laravel/2018-01-01-00-00-00.zip');
     }
 
     /** @test */
