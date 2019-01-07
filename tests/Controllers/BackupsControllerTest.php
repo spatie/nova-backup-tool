@@ -39,26 +39,23 @@ class BackupsControllerTest extends TestCase
             ->assertJsonStructure([0 => ['path', 'date', 'size']]);
     }
 
+    /** @test */
     public function it_can_delete_a_backup()
     {
         $this
             ->postJson('/nova-vendor/spatie/backup-tool/backups', ['disk' => 'local'])
             ->assertSuccessful();
 
-        $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
-
-        Storage::disk('local')->assertExists($pathToZip);
+        Storage::disk('local')->assertExists('Laravel/2018-01-01-00-00-00.zip');
 
         $this
             ->deleteJson('/nova-vendor/spatie/backup-tool/backups', [
                 'disk' => 'local',
-                'file' => 'Laravel/2018-01-01-00-00-00.zip',
+                'path' => 'Laravel/2018-01-01-00-00-00.zip',
             ])
             ->assertSuccessful();
 
-        $pathToZip = 'Laravel/2018-01-01-00-00-00.zip';
-
-        Storage::disk('local')->assertMissing($pathToZip);
+        Storage::disk('local')->assertMissing('Laravel/2018-01-01-00-00-00.zip');
     }
 
     /** @test */
