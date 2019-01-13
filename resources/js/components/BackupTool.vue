@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loaded">
+    <loading-view :loading="initialLoading">
         <div class="flex mb-6 items-center justify-between">
             <heading>
                 {{ __('Backups') }}
@@ -9,13 +9,13 @@
             </button>
         </div>
 
-        <card class="mb-6">
+        <loading-card :loading="loading" class="mb-6">
             <backup-statuses
                 :backup-statuses="backupStatuses"
             />
-        </card>
+        </loading-card>
 
-        <card>
+        <loading-card :loading="loading">
             <backups
                 v-if="activeDisk"
                 :disks="disks"
@@ -23,8 +23,8 @@
                 :active-disk.sync="activeDisk"
                 @delete="deleteBackup"
             />
-        </card>
-    </div>
+        </loading-card>
+    </loading-view>
 </template>
 
 <script>
@@ -45,17 +45,20 @@ export default {
     },
 
     data: () => ({
-        loaded: false,
         activeDisk: null,
         activeDiskBackups: [],
         backupStatuses: [],
+        initialLoading: true,
+        loading: true
     }),
 
     async created() {
+        this.initialLoading = false;
+
         await this.updateBackupStatuses();
         await this.updateActiveDiskBackups();
 
-        this.loaded = true;
+        this.loading = false;
 
         this.startPolling();
     },
