@@ -9,13 +9,13 @@
             </button>
         </div>
 
-        <loading-card :loading="loading" class="card mb-6">
+        <loading-card :loading="loading" class="mb-6">
             <backup-statuses
                 :backup-statuses="backupStatuses"
             />
         </loading-card>
 
-        <loading-card :loading="loading" class="card">
+        <loading-card :loading="loading">
             <backups
                 v-if="activeDisk"
                 :disks="disks"
