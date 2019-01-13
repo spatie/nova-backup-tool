@@ -1,5 +1,5 @@
 <template>
-    <table cellpadding="0" cellspacing="0" class="backups-table table w-full">
+    <table cellpadding="0" cellspacing="0" class="table w-full">
         <thead>
             <tr>
                 <th class="text-left rounded-tl">
