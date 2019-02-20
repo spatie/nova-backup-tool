@@ -45,14 +45,13 @@ class BackupsControllerTest extends TestCase
     public function when_creating_a_backup_it_pushes_the_job_to_a_queue()
     {
         Queue::fake();
-        
+
         $this
             ->postJson('/nova-vendor/spatie/backup-tool/backups', ['disk' => 'local'])
             ->assertSuccessful();
-        
+
         Queue::assertPushed(CreateBackupJob::class);
     }
-    
 
     /** @test */
     public function it_can_delete_a_backup()
