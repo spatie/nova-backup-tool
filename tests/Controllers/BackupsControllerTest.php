@@ -3,7 +3,9 @@
 namespace Spatie\BackupTool\Tests;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
+use Spatie\BackupTool\Jobs\CreateBackupJob;
 
 class BackupsControllerTest extends TestCase
 {
@@ -38,6 +40,19 @@ class BackupsControllerTest extends TestCase
             ->assertJsonCount(1)
             ->assertJsonStructure([0 => ['path', 'date', 'size']]);
     }
+
+    /** @test */
+    public function when_creating_a_backup_it_pushes_the_job_to_a_queue()
+    {
+        Queue::fake();
+        
+        $this
+            ->postJson('/nova-vendor/spatie/backup-tool/backups', ['disk' => 'local'])
+            ->assertSuccessful();
+        
+        Queue::assertPushed(CreateBackupJob::class);
+    }
+    
 
     /** @test */
     public function it_can_delete_a_backup()
