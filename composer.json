@@ -25,6 +25,12 @@
         "phpunit/phpunit": "7.1",
         "spatie/phpunit-snapshot-assertions": "^1.3"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Spatie\\BackupTool\\": "src/"
