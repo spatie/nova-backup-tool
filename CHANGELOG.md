@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 2.0.2 - 2019-01-21
+
+- make sure backups can be queued
+
 ## 2.0.1 - 2019-01-13
 
 - add loading indicators
