@@ -2,8 +2,8 @@
 
 namespace Spatie\BackupTool\Tests;
 
-use Carbon\Carbon;
 use Closure;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
@@ -93,11 +93,11 @@ class BackupsControllerTest extends TestCase
         $disk = 'local';
 
         Cache::shouldReceive('remember')
-            ->with('backups-' . $disk, Carbon::class, Closure::class)
+            ->with('backups-'.$disk, Carbon::class, Closure::class)
             ->once();
 
         $this
-            ->getJson('/nova-vendor/spatie/backup-tool/backups?disk=' . $disk)
+            ->getJson('/nova-vendor/spatie/backup-tool/backups?disk='.$disk)
             ->assertSuccessful();
     }
 }

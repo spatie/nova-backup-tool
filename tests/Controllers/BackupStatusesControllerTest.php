@@ -2,8 +2,8 @@
 
 namespace Spatie\BackupTool\Tests;
 
-use Carbon\Carbon;
 use Closure;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class BackupStatusesControllerTest extends TestCase
