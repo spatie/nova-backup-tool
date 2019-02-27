@@ -2,6 +2,10 @@
 
 namespace Spatie\BackupTool\Tests;
 
+use Closure;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
+
 class BackupStatusesControllerTest extends TestCase
 {
     /** @test */
@@ -19,5 +23,17 @@ class BackupStatusesControllerTest extends TestCase
                     'usedStorage' => '0 KB',
                 ],
             ]);
+    }
+
+    /** @test */
+    public function it_caches_the_index_of_a_disk()
+    {
+        Cache::shouldReceive('remember')
+            ->with('backup-statuses', Carbon::class, Closure::class)
+            ->once();
+
+        $this
+            ->getJson('/nova-vendor/spatie/backup-tool/backup-statuses')
+            ->assertSuccessful();
     }
 }
