@@ -9,7 +9,7 @@ use Spatie\BackupTool\Jobs\CreateBackupJob;
 
 class BackupsControllerTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

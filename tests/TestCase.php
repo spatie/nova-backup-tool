@@ -14,7 +14,7 @@ abstract class TestCase extends Orchestra
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $filesystem;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->filesystem = new Filesystem();
 
