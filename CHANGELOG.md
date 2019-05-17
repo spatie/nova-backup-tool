@@ -2,7 +2,11 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
-# 3.0.0 - 2019-02-27
+## 3.0.1 - 2019-05-17
+
+- fix caching issue
+
+## 3.0.0 - 2019-02-27
 
 - add support for Laravel 5.8 / Nova 2.0
 
