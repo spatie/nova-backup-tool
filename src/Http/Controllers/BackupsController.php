@@ -21,7 +21,7 @@ class BackupsController extends ApiController
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
 
-        return Cache::remember("backups-{$validated['disk']}", now()->addMinutes(1 / 15), function () use ($backupDestination) {
+        return Cache::remember("backups-{$validated['disk']}", now()->addSeconds(4), function () use ($backupDestination) {
             return $backupDestination
                 ->backups()
                 ->map(function (Backup $backup) {
