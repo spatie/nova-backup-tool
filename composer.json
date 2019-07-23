@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "laravel/nova": "*",
+        "laravel/nova": "^2.0",
         "illuminate/support": "^5.8",
         "spatie/laravel-backup": "^6.0"
     },
@@ -28,8 +28,8 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "../laravel/nova"
+            "type": "composer",
+            "url": "https://nova.laravel.com"
         }
     ],
     "autoload": {
