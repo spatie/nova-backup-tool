@@ -35,9 +35,10 @@ class BackupsController extends ApiController
         });
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        dispatch(new CreateBackupJob());
+        $option = $request->input('option', '');
+        dispatch(new CreateBackupJob($option));
     }
 
     public function delete(Request $request)

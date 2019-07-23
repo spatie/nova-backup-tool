@@ -12,9 +12,24 @@ class CreateBackupJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable;
 
+    protected $option;
+
+    public function __construct($option = '')
+    {
+        $this->option = $option;
+    }
+
     public function handle()
     {
         $backupJob = BackupJobFactory::createFromArray(config('backup'));
+
+        if ($this->option == 'only-db') {
+            $backupJob->dontBackupFilesystem();
+        }
+
+        if ($this->option == 'only-files') {
+            $backupJob->dontBackupDatabases();
+        }
 
         $backupJob->run();
     }
