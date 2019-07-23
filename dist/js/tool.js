@@ -251,8 +251,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Backups___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Backups__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BackupStatuses__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BackupStatuses___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__BackupStatuses__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__icons_IconTune__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__icons_IconTune___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__icons_IconTune__);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -310,12 +308,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         Backups: __WEBPACK_IMPORTED_MODULE_2__Backups___default.a,
-        BackupStatuses: __WEBPACK_IMPORTED_MODULE_3__BackupStatuses___default.a,
-        IconTune: __WEBPACK_IMPORTED_MODULE_4__icons_IconTune__["default"]
+        BackupStatuses: __WEBPACK_IMPORTED_MODULE_3__BackupStatuses___default.a
     },
 
     computed: {
@@ -2721,12 +2717,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3798fbb6", module.exports)
   }
 }
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/ahmic/codes/nova-backup-tool/resources/js/components/icons/IconTune.vue'");
 
 /***/ })
 /******/ ]);

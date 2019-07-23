@@ -50,13 +50,11 @@
 import api from '../api';
 import Backups from './Backups';
 import BackupStatuses from './BackupStatuses';
-import IconTune from './icons/IconTune';
 
 export default {
     components: {
         Backups,
-        BackupStatuses,
-        IconTune
+        BackupStatuses
     },
 
     computed: {
