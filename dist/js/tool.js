@@ -400,7 +400,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].createBackup();
         },
         createPartialBackup: function createPartialBackup(option) {
-            this.$toasted.show(this.__('Creating a new ' + option.replace('only-', '') + ' backup in the background...'), {
+            this.$toasted.show(this.__('Creating a new backup in the background...') + ' (' + option + ')', {
                 type: 'success'
             });
 

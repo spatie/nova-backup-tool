@@ -112,7 +112,7 @@ export default {
         },
 
         createPartialBackup(option) {
-            this.$toasted.show(this.__('Creating a new ' + option.replace('only-', '') + ' backup in the background...'), {
+            this.$toasted.show(this.__('Creating a new backup in the background...') + ' (' + option + ')', {
                 type: 'success',
             });
 
