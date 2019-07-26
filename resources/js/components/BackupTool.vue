@@ -18,10 +18,14 @@
                 <dropdown-menu slot="menu" direction="rtl" width="250">
                     <ul class="list-reset">
                         <li>
-                            <a class="block p-3 text-90 hover:bg-30 cursor-pointer" @click.prevent="createPartialBackup('only-db')">Create DB backup</a>
+                            <a class="block p-3 text-90 hover:bg-30 cursor-pointer" @click.prevent="createPartialBackup('only-db')">
+                                {{ __('Create database backup') }}
+                            </a>
                         </li>
                         <li>
-                            <a class="block p-3 text-90 hover:bg-30 cursor-pointer" @click.prevent="createPartialBackup('only-files')">Create files backup</a>
+                            <a class="block p-3 text-90 hover:bg-30 cursor-pointer" @click.prevent="createPartialBackup('only-files')">
+                                {{ __('Create files backup') }}
+                            </a>
                         </li>
                     </ul>
                 </dropdown-menu>
