@@ -4,9 +4,32 @@
             <heading>
                 {{ __('Backups') }}
             </heading>
-            <button @click="createBackup" class="btn btn-default btn-primary">
+            <button @click="createBackup" class="btn btn-default btn-primary ml-auto mr-3">
                 {{ __('Create Backup') }}
             </button>
+
+            <dropdown dusk="select-all-dropdown" ref="backupDropdownMenu">
+                <dropdown-trigger slot-scope="{ toggle }" :show-arrow="false" :handleClick="toggle" class="mr-3">
+                    <button class="btn btn-default btn-icon btn-primary font-normal no-text-shadow">
+                        <icon type="menu" view-box="0 0 24 24" width="20" height="20" class="text-white" />
+                    </button>
+                </dropdown-trigger>
+
+                <dropdown-menu slot="menu" direction="rtl" width="250">
+                    <ul class="list-reset">
+                        <li>
+                            <a class="block p-3 text-90 hover:bg-30 cursor-pointer" @click.prevent="createPartialBackup('only-db')">
+                                {{ __('Create database backup') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="block p-3 text-90 hover:bg-30 cursor-pointer" @click.prevent="createPartialBackup('only-files')">
+                                {{ __('Create files backup') }}
+                            </a>
+                        </li>
+                    </ul>
+                </dropdown-menu>
+            </dropdown>
         </div>
 
         <loading-card :loading="loading" class="mb-6">
@@ -35,7 +58,7 @@ import BackupStatuses from './BackupStatuses';
 export default {
     components: {
         Backups,
-        BackupStatuses,
+        BackupStatuses
     },
 
     computed: {
@@ -90,6 +113,15 @@ export default {
             });
 
             return api.createBackup();
+        },
+
+        createPartialBackup(option) {
+            this.$toasted.show(this.__('Creating a new backup in the background...') + ' (' + option + ')', {
+                type: 'success',
+            });
+
+            this.$refs.backupDropdownMenu.toggle();
+            return api.createPartialBackup(option);
         },
 
         deleteBackup({ disk, path }) {
