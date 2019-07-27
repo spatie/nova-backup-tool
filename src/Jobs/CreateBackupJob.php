@@ -31,6 +31,10 @@ class CreateBackupJob implements ShouldQueue
             $backupJob->dontBackupDatabases();
         }
 
+        if (!empty($this->option)) {
+            $backupJob->setFilename($this->option.'_'.date('Y-m-d-H-i-s').'.zip');
+        }
+
         $backupJob->run();
     }
 }
