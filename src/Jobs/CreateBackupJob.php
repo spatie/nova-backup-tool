@@ -23,16 +23,18 @@ class CreateBackupJob implements ShouldQueue
     {
         $backupJob = BackupJobFactory::createFromArray(config('backup'));
 
-        if ($this->option == 'only-db') {
+        if ($this->option === 'only-db') {
             $backupJob->dontBackupFilesystem();
         }
 
-        if ($this->option == 'only-files') {
+        if ($this->option === 'only-files') {
             $backupJob->dontBackupDatabases();
         }
 
         if (! empty($this->option)) {
-            $backupJob->setFilename($this->option.'_'.date('Y-m-d-H-i-s').'.zip');
+            $prefix = str_replace('_', '-', $this->option) . '-';
+
+            $backupJob->setFilename($prefix . date('Y-m-d-H-i-s').'.zip');
         }
 
         $backupJob->run();
