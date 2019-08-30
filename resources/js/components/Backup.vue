@@ -14,7 +14,7 @@
                 <icon type="download" view-box="0 0 24 24" width="20" height="20" />
             </a>
             <button
-                title="Delete"
+                :title="__('Delete')"
                 class="appearance-none mr-3"
                 :class="deletable ? 'text-70 hover:text-primary' : 'cursor-default text-40'"
                 :disabled="!deletable"

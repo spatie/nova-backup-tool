@@ -11,6 +11,14 @@ class BackupToolServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/spatie/nova-backup-tool'),
+        ]);
+
+        Nova::translations(
+            resource_path('lang/vendor/spatie/nova-backup-tool/'.app()->getLocale().'.json')
+        );
+
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'BackupTool');
 
         $this->app->booted(function () {
