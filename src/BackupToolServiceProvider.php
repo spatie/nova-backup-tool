@@ -2,7 +2,6 @@
 
 namespace Spatie\BackupTool;
 
-use Laravel\Nova\Nova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Spatie\BackupTool\Http\Middleware\Authorize;

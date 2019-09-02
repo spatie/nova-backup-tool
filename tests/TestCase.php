@@ -76,7 +76,7 @@ abstract class TestCase extends Orchestra
         return $fullPath;
     }
 
-    protected function getTempDirectory(): String
+    protected function getTempDirectory(): string
     {
         return __DIR__.'/temp';
     }
