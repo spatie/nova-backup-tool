@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.1.1 - 2019-09-02
+
+- fix incorrect `Dispatchable` trait import
+
 ## 3.1.0 - 2019-07-28
 
 - add option for partial backups
