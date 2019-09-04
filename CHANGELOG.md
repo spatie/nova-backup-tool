@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.2.0 - 2019-09-04
+
+- add support for Laravel 6
+
 ## 3.1.1 - 2019-09-02
 
 - fix incorrect `Dispatchable` trait import

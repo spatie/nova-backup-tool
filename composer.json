@@ -18,11 +18,11 @@
     "require": {
         "php": "^7.2",
         "laravel/nova": "^2.0",
-        "illuminate/support": "^5.8",
+        "illuminate/support": "^5.8|^6.0",
         "spatie/laravel-backup": "^6.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.8",
+        "orchestra/testbench": "^3.8|^4.0",
         "phpunit/phpunit": "8.0",
         "spatie/phpunit-snapshot-assertions": "^2.0"
     },
