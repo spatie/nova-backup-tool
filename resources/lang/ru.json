@@ -1,0 +1,19 @@
+{
+    "Download": "Скачать",
+    "Path": "Путь",
+    "Created at": "Создано",
+    "Size": "Размер",
+    "No backups presen": "Резервные копии отсутствуют",
+    "Delete backup": "Удалить копию",
+    "Are you sure you want to delete the backup created at :date ?": "Вы уверены, что хотите удалить копию от :date ?",
+    "Disk": "Диск",
+    "Healthy": "Состояние",
+    "Amount of backups": "Количество копий",
+    "Newest backup": "Последняя копия",
+    "Used Storage": "Размер",
+    "Backups": "Резервирование",
+    "Create Backup": "Создать копию",
+    "Create database backup": "Создать копию БД",
+    "Create files backup": "Создать копию файлов",
+    "Creating a new backup in the background...": "Создаю новую копию в фоне..."
+}
