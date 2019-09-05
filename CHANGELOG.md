@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.3.1 - 2019-09-05
+
+- fix missing import
+
 ## 3.3.0 - 2019-09-04
 
 - add support for translations
