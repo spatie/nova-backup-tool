@@ -3,7 +3,7 @@
     "Path": "Путь",
     "Created at": "Создано",
     "Size": "Размер",
-    "No backups presen": "Резервные копии отсутствуют",
+    "No backups present": "Резервные копии отсутствуют",
     "Delete backup": "Удалить копию",
     "Are you sure you want to delete the backup created at :date ?": "Вы уверены, что хотите удалить копию от :date ?",
     "Disk": "Диск",

@@ -12,15 +12,12 @@ class BackupToolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/spatie/nova-backup-tool'),
+            __DIR__.'/../resources/lang/' => resource_path('lang/vendor/nova-backup-tool'),
         ]);
 
-        Nova::translations(
-            resource_path('lang/vendor/spatie/nova-backup-tool/'.app()->getLocale().'.json')
-        );
-
-        $this->loadJSONTranslationsFrom(__DIR__.'/../resources/lang');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'BackupTool');
+
+        $this->registerTranslations();
 
         $this->app->booted(function () {
             $this->routes();
@@ -38,5 +35,17 @@ class BackupToolServiceProvider extends ServiceProvider
             ->group(
                 __DIR__.'/../routes/api.php'
             );
+    }
+
+    protected function registerTranslations()
+    {
+        $currentLocale = app()->getLocale();
+
+        Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
+        Nova::translations(resource_path('lang/vendor/nova-backup-tool/'.$currentLocale.'.json'));
+
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'BackupTool');
+        $this->loadJSONTranslationsFrom(__DIR__.'/../resources/lang');
+        $this->loadJSONTranslationsFrom(resource_path('lang/vendor/nova-backup-tool'));
     }
 }

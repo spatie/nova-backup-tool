@@ -22,7 +22,7 @@ class BackupStatusesController extends ApiController
                         'amount' => $backupDestinationStatus->backupDestination()->backups()->count(),
                         'newest' => $backupDestinationStatus->backupDestination()->newestBackup()
                             ? $backupDestinationStatus->backupDestination()->newestBackup()->date()->diffForHumans()
-                            : 'No backups present',
+                            : __('No backups present'),
                         'usedStorage' => Format::humanReadableSize($backupDestinationStatus->backupDestination()->usedStorage()),
                     ];
                 })

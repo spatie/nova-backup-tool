@@ -1,0 +1,19 @@
+{
+    "Download": "Download",
+    "Path": "Path",
+    "Created at": "Created at",
+    "Size": "Size",
+    "No backups present": "No backups present",
+    "Delete backup": "Delete backup",
+    "Are you sure you want to delete the backup created at :date ?": "Are you sure you want to delete the backup created at :date ?",
+    "Disk": "Disk",
+    "Healthy": "Healthy",
+    "Amount of backups": "Amount of backups",
+    "Newest backup": "Newest backup",
+    "Used Storage": "Used Storage",
+    "Backups": "Backups",
+    "Create Backup": "Create Backup",
+    "Create database backup": "Create database backup",
+    "Create files backup": "Create files backup",
+    "Creating a new backup in the background...": "Creating a new backup in the background..."
+}
