@@ -1,0 +1,19 @@
+{
+    "Download": "Descargar",
+    "Path": "Ruta",
+    "Created at": "Creado el",
+    "Size": "Tamaño",
+    "No backups present": "No hay copias de respaldo presentes",
+    "Delete backup": "Borrar copia de respaldo",
+    "Are you sure you want to delete the backup created at :date ?": "¿Estás seguro de que quieres borrar el respaldo creado el :date ?",
+    "Disk": "Disco",
+    "Healthy": "Saludable",
+    "Amount of backups": "Cantidad de respaldos",
+    "Newest backup": "Respaldo más reciente",
+    "Used Storage": "Almacenamiento utilizado",
+    "Backups": "Copias de Respaldo",
+    "Create Backup": "Crear Copia de Respaldo",
+    "Create database backup": "Crear respaldo de base de datos",
+    "Create files backup": "Crear respaldo de archivos",
+    "Creating a new backup in the background...": "Creando una nueva copia de respaldo en segundo plano..."
+}
