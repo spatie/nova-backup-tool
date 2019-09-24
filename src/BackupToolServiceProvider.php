@@ -56,7 +56,7 @@ class BackupToolServiceProvider extends ServiceProvider
                 'novabackuptool' => [
                     'polling' => config('novabackuptool.polling'),
                     'polling_interval' => config('novabackuptool.polling_interval'),
-                ]
+                ],
             ]);
         });
     }
