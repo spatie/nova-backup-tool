@@ -22,5 +22,5 @@ return [
     |
     */
 
-    'polling_interval' => 1
+    'polling_interval' => 1,
 ];

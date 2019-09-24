@@ -55,7 +55,7 @@ class BackupToolServiceProvider extends ServiceProvider
             Nova::provideToScript([
                 'novabackuptool' => [
                     'polling' => config('novabackuptool.polling'),
-                    'polling_interval' => config('novabackuptool.polling_interval')
+                    'polling_interval' => config('novabackuptool.polling_interval'),
                 ]
             ]);
         });
