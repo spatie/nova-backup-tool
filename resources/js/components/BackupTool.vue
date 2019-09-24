@@ -129,14 +129,16 @@ export default {
         },
 
         startPolling() {
-            const poller = window.setInterval(() => {
-                this.updateBackupStatuses();
-                this.updateActiveDiskBackups();
-            }, 1000);
+            if(Nova.config.novabackuptool.polling){
+                const poller = window.setInterval(() => {
+                    this.updateBackupStatuses();
+                    this.updateActiveDiskBackups();
+                }, Nova.config.novabackuptool.polling_interval * 1000);
 
-            this.$once('hook:beforeDestroy', () => {
-                window.clearInterval(poller);
-            });
+                this.$once('hook:beforeDestroy', () => {
+                    window.clearInterval(poller);
+                });
+            }
         },
     },
 };
