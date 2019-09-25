@@ -3,6 +3,7 @@
 namespace Spatie\BackupTool;
 
 use Laravel\Nova\Nova;
+use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Spatie\BackupTool\Http\Middleware\Authorize;
@@ -11,6 +12,10 @@ class BackupToolServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/nova-backup-tool.php' => config_path('nova-backup-tool.php'),
+        ], 'config');
+
         $this->publishes([
             __DIR__.'/../resources/lang/' => resource_path('lang/vendor/nova-backup-tool'),
         ]);
@@ -22,6 +27,13 @@ class BackupToolServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
+
+        $this->provideConfigToScript();
+    }
+
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__.'/../config/nova-backup-tool.php', 'nova-backup-tool');
     }
 
     protected function routes()
@@ -35,6 +47,18 @@ class BackupToolServiceProvider extends ServiceProvider
             ->group(
                 __DIR__.'/../routes/api.php'
             );
+    }
+
+    protected function provideConfigToScript()
+    {
+        Nova::serving(function (ServingNova $event) {
+            Nova::provideToScript([
+                'nova_backup_tool' => [
+                    'polling' => config('nova-backup-tool.polling'),
+                    'polling_interval' => config('nova-backup-tool.polling_interval'),
+                ],
+            ]);
+        });
     }
 
     protected function registerTranslations()

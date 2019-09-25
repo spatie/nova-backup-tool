@@ -49,6 +49,32 @@ public function tools()
 
 Finally you should setup [a queue](https://laravel.com/docs/master/queues). This tool doesn't care what kind of queue as long as you don't use the `sync` driver.
 
+## Configuration
+
+You can optionally publish the config file with:
+
+```bash
+php artisan vendor:publish --provider="Spatie\BackupTool\BackupToolServiceProvider" --tag="config"
+```
+
+This is the contents of the published config file:
+
+```php
+<?php
+
+return [
+    /*
+     * Enable or disable backup tool polling.
+     */
+    'polling' => true,
+
+    /*
+     * Interval seconds between polling requests.
+     */
+    'polling_interval' => 1,
+];
+```
+
 ## Usage
 
 Click on the "Backups" menu item in your Nova app to see the backup tool.
