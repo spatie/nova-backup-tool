@@ -49,7 +49,7 @@ public function tools()
 
 Finally you should setup [a queue](https://laravel.com/docs/master/queues). This tool doesn't care what kind of queue as long as you don't use the `sync` driver.
 
-## Configuration
+## Configuration
 
 You can optionally publish the config file with:
 
