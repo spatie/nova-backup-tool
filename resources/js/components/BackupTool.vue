@@ -129,11 +129,11 @@ export default {
         },
 
         startPolling() {
-            if(Nova.config.novabackuptool.polling){
+            if(Nova.config.nova_backup_tool.polling){
                 const poller = window.setInterval(() => {
                     this.updateBackupStatuses();
                     this.updateActiveDiskBackups();
-                }, Nova.config.novabackuptool.polling_interval * 1000);
+                }, Nova.config.nova_backup_tool.polling_interval * 1000);
 
                 this.$once('hook:beforeDestroy', () => {
                     window.clearInterval(poller);

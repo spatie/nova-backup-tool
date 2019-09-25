@@ -13,7 +13,7 @@ class BackupToolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/novabackuptool.php' => config_path('novabackuptool.php'),
+            __DIR__.'/../config/nova-backup-tool.php' => config_path('nova-backup-tool.php'),
         ], 'config');
 
         $this->publishes([
@@ -33,7 +33,7 @@ class BackupToolServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/novabackuptool.php', 'novabackuptool');
+        $this->mergeConfigFrom(__DIR__.'/../config/nova-backup-tool.php', 'nova-backup-tool');
     }
 
     protected function routes()
@@ -53,9 +53,9 @@ class BackupToolServiceProvider extends ServiceProvider
     {
         Nova::serving(function (ServingNova $event) {
             Nova::provideToScript([
-                'novabackuptool' => [
-                    'polling' => config('novabackuptool.polling'),
-                    'polling_interval' => config('novabackuptool.polling_interval'),
+                'nova_backup_tool' => [
+                    'polling' => config('nova-backup-tool.polling'),
+                    'polling_interval' => config('nova-backup-tool.polling_interval'),
                 ],
             ]);
         });
