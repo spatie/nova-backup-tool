@@ -1,0 +1,19 @@
+{
+    "Download": "Parsisiųsti",
+    "Path": "Kelias",
+    "Created at": "Sukurta",
+    "Size": "Dydis",
+    "No backups present": "Nėra atsarginių kopijų",
+    "Delete backup": "Ištrinti atsarginę kopiją",
+    "Are you sure you want to delete the backup created at :date ?": "Are tikrai norit ištrinti atsarginę kopiją sukurtą :date ?",
+    "Disk": "Diskas",
+    "Healthy": "Sveikas",
+    "Amount of backups": "Atsarginių kopijų kiekis",
+    "Newest backup": "Naujausia atsarginė kopija",
+    "Used Storage": "Naudojama vieta",
+    "Backups": "Atsarginės kopijos",
+    "Create Backup": "Sukurti atsarginę kopiją",
+    "Create database backup": "Sukurti duomenų bazės atsarginę kopiją",
+    "Create files backup": "Sukurti atsarginę failų kopiją",
+    "Creating a new backup in the background...": "Sukuriama atsarginė kopiją fone..."
+}
