@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.6.0 - 2019-10-14
+
+- add Lithuanian translations (#64)
+
 ## 3.5.0 - 2019-09-25
 
 - add polling options
