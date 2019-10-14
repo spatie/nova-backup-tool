@@ -2,8 +2,8 @@
 
 namespace Spatie\BackupTool\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Contracts\Validation\Rule;
 
 class PathToZip implements Rule
 {
