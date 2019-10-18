@@ -1,0 +1,19 @@
+{
+    "Download": "Herunterladen",
+    "Path": "Pfad",
+    "Created at": "Erstellt am",
+    "Size": "Größe",
+    "No backups present": "Keine Backups vorhanden",
+    "Delete backup": "Backup löschen",
+    "Are you sure you want to delete the backup created at :date ?": "Sind Sie sicher, dass Sie das Backup erstellt am :date löschen möchten?",
+    "Disk": "Speicher",
+    "Healthy": "Gesund",
+    "Amount of backups": "Anzahl der Backups",
+    "Newest backup": "Letztes Backup",
+    "Used Storage": "Belegter Speicherplatz",
+    "Backups": "Backups",
+    "Create Backup": "Backup erstellen",
+    "Create database backup": "Backup der Datenbank erstellen",
+    "Create files backup": "Backup der Dateien erstellen",
+    "Creating a new backup in the background...": "Erstelle ein neues Backup im Hintergrund..."
+}
