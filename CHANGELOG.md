@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.7.0 - 2019-10-20
+
+- add German translations
+
 ## 3.6.0 - 2019-10-14
 
 - add Lithuanian translations (#64)
