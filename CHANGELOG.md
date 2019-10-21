@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.8.0 - 2019-10-21
+
+- add Dutch translations
+
 ## 3.7.0 - 2019-10-20
 
 - add German translations
