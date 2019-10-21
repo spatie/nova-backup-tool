@@ -1,0 +1,19 @@
+{
+    "Download": "Download",
+    "Path": "Pad",
+    "Created at": "Gemaakt op",
+    "Size": "Grootte",
+    "No backups present": "Geen back-ups beschikbaar",
+    "Delete backup": "Back-up verwijderen",
+    "Are you sure you want to delete the backup created at :date ?": "Weet u zeker dat u de back-up gemaakt op :date wilt verwijderen?",
+    "Disk": "Schijf",
+    "Healthy": "Gezond",
+    "Amount of backups": "Aantal back-ups",
+    "Newest backup": "Nieuwste back-up",
+    "Used Storage": "Gebruikte opslagruimte",
+    "Backups": "Back-ups",
+    "Create Backup": "Maak een back-up",
+    "Create database backup": "Maak een databaseback-up",
+    "Create files backup": "Maak een bestandsback-up",
+    "Creating a new backup in the background...": "Nieuwe back-up op de achtergrond maken..."
+}
