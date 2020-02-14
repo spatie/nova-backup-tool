@@ -3,13 +3,13 @@
 namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Backup\Helpers\Format;
 use Illuminate\Support\Facades\Cache;
-use Spatie\BackupTool\Rules\PathToZip;
-use Spatie\BackupTool\Rules\BackupDisk;
 use Spatie\Backup\BackupDestination\Backup;
-use Spatie\BackupTool\Jobs\CreateBackupJob;
 use Spatie\Backup\BackupDestination\BackupDestination;
+use Spatie\Backup\Helpers\Format;
+use Spatie\BackupTool\Jobs\CreateBackupJob;
+use Spatie\BackupTool\Rules\BackupDisk;
+use Spatie\BackupTool\Rules\PathToZip;
 
 class BackupsController extends ApiController
 {
@@ -38,7 +38,9 @@ class BackupsController extends ApiController
     public function create(Request $request)
     {
         $option = $request->input('option', '');
-        dispatch(new CreateBackupJob($option));
+
+        dispatch(new CreateBackupJob($option))
+            ->onQueue(config('nova-backup-tool.queue'));
     }
 
     public function delete(Request $request)
