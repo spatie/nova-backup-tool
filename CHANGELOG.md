@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 3.9.0 - 2020-02-14
+
+- add custom queue specification (#72)
+
 ## 3.8.0 - 2019-10-21
 
 - add Dutch translations
