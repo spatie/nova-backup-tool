@@ -17,8 +17,9 @@
     ],
     "require": {
         "php": "^7.2",
-        "laravel/nova": "^3.0",
         "illuminate/support": "^7.0",
+        "laravel/nova": "^3.0",
+        "nesbot/carbon": "^2.31",
         "spatie/laravel-backup": "^6.0"
     },
     "require-dev": {
