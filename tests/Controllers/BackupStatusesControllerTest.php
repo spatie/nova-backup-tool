@@ -20,7 +20,7 @@ class BackupStatusesControllerTest extends TestCase
                     'disk' => 'local',
                     'amount' => 0,
                     'newest' => 'No backups present',
-                    'usedStorage' => '0 KB',
+                    'usedStorage' => '0 B',
                 ],
             ]);
     }
