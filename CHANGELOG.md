@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.0.0 - 2020-03-03
+
+- add support for Laravel 7 / Nova 3
+
 ## 3.9.0 - 2020-02-14
 
 - add custom queue specification (#72)
