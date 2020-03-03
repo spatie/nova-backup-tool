@@ -2,8 +2,8 @@
 
 namespace Spatie\BackupTool\Tests;
 
-use Closure;
 use Carbon\Carbon;
+use Closure;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;

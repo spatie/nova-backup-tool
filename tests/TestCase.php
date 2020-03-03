@@ -5,8 +5,8 @@ namespace Spatie\BackupTool\Tests;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Backup\BackupServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Backup\BackupServiceProvider;
 use Spatie\BackupTool\BackupToolServiceProvider;
 
 abstract class TestCase extends Orchestra

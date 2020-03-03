@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Spatie\BackupTool\Http\Controllers\BackupsController;
-use Spatie\BackupTool\Http\Controllers\CleanBackupsController;
 use Spatie\BackupTool\Http\Controllers\BackupStatusesController;
+use Spatie\BackupTool\Http\Controllers\CleanBackupsController;
 use Spatie\BackupTool\Http\Controllers\DownloadBackupController;
 
 Route::get('backups', BackupsController::class.'@index');
