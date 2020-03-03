@@ -2,8 +2,8 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
-use Spatie\Backup\Helpers\Format;
 use Illuminate\Support\Facades\Cache;
+use Spatie\Backup\Helpers\Format;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatus;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
 
