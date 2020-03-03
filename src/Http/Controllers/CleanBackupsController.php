@@ -2,9 +2,9 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
+use Spatie\Backup\BackupDestination\BackupDestinationFactory;
 use Spatie\Backup\Tasks\Cleanup\CleanupJob;
 use Spatie\Backup\Tasks\Cleanup\CleanupStrategy;
-use Spatie\Backup\BackupDestination\BackupDestinationFactory;
 
 class CleanBackupsController extends ApiController
 {

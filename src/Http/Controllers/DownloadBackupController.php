@@ -2,12 +2,12 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
-use Spatie\BackupTool\Rules\PathToZip;
-use Spatie\BackupTool\Rules\BackupDisk;
 use Spatie\Backup\BackupDestination\Backup;
+use Spatie\Backup\BackupDestination\BackupDestination;
+use Spatie\BackupTool\Rules\BackupDisk;
+use Spatie\BackupTool\Rules\PathToZip;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Spatie\Backup\BackupDestination\BackupDestination;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DownloadBackupController extends ApiController
