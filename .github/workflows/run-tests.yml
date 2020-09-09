@@ -4,11 +4,10 @@ on: [push, pull_request]
 
 jobs:
     test:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest, windows-latest]
                 php: [7.3]
                 laravel: [7.*]
                 dependency-version: [prefer-lowest, prefer-stable]
@@ -22,10 +21,10 @@ jobs:
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v1
+                uses: actions/checkout@v2
 
             -   name: Cache dependencies
-                uses: actions/cache@v1
+                uses: actions/cache@v2
                 with:
                     path: ~/.composer/cache/files
                     key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
