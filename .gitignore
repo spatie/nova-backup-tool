@@ -6,3 +6,4 @@ composer.phar
 composer.lock
 phpunit.xml
 auth.json
+php_cs.cache
