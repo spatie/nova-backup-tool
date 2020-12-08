@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.0 - 2020-12-08
+
+- allow PHP 8
+
 ## 4.0.1 - 2020-09-09
 
 - add support for Laravel 8 / Nova 4
