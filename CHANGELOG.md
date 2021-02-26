@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.1 - 2021-02-26
+
+- allow backup v7
+
 ## 4.1.0 - 2020-12-08
 
 - allow PHP 8
