@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.2 - 2021-03-07
+
+- fix page not loading because of missing function sizeInBytes() (#94)
+
 ## 4.1.1 - 2021-02-26
 
 - allow backup v7
