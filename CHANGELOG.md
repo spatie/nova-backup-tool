@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.3 - 2021-03-21
+
+- add arabic translation file ar.json to resources/lang (#99)
+
 ## 4.1.2 - 2021-03-07
 
 - fix page not loading because of missing function sizeInBytes() (#94)
