@@ -15,5 +15,13 @@
     "Create Backup": "Create Backup",
     "Create database backup": "Create database backup",
     "Create files backup": "Create files backup",
-    "Creating a new backup in the background...": "Creating a new backup in the background..."
+    "Creating a new backup in the background...": "Creating a new backup in the background...",
+    "Disk Not Configured": "This disk is not configured as a backup disk.",
+    "B": "B",
+    "KB": "KB",
+    "MB": "MB",
+    "GB": "GB",
+    "TB": "TB",
+    "local": "local"
+
 }
