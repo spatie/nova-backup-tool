@@ -15,5 +15,12 @@
     "Create Backup": "إنشاء نسخة إحتياطية",
     "Create database backup": "إنشاء نسخة إحتياطية من قواعد البيانات",
     "Create files backup": "إنشاء نسخة إحتياطية من الملفات",
-    "Creating a new backup in the background...": "إنشاء نسخة إحتياطية في الخلفية..."
+    "Creating a new backup in the background...": "إنشاء نسخة إحتياطية في الخلفية...",
+    "Disk Not Configured": "هذا القرص ليس معداً للنسخ الإحتياطي.",
+    "B": "بايت",
+    "KB": "كيلوبايت",
+    "MB": "ميقابايت",
+    "GB": "قيقابايت",
+    "TB": "تيرابايت",
+    "local": "قرص محلي"
 }
