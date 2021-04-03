@@ -75,7 +75,6 @@ export default {
         backupStatuses: [],
         initialLoading: true,
         loading: true,
-        showingModal: false,
         poller: undefined
     }),
 
