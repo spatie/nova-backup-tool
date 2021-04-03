@@ -9,7 +9,7 @@ return [
     /*
      * Interval seconds between polling requests.
      */
-    'polling_interval' => 1,
+    'polling_interval' => 2,
 
     /*
      * Queue to use for the jobs to run through.
