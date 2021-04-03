@@ -44,6 +44,8 @@
                 :disks="disks"
                 :backups="activeDiskBackups"
                 :active-disk.sync="activeDisk"
+                @stopPolling="stopPolling"
+                @startPolling="startPolling"
                 @delete="deleteBackup"
             />
         </loading-card>
@@ -72,7 +74,9 @@ export default {
         activeDiskBackups: [],
         backupStatuses: [],
         initialLoading: true,
-        loading: true
+        loading: true,
+        showingModal: false,
+        poller: undefined
     }),
 
     async created() {
@@ -130,14 +134,20 @@ export default {
 
         startPolling() {
             if(Nova.config.nova_backup_tool.polling){
-                const poller = window.setInterval(() => {
+                this.poller = window.setInterval(() => {
                     this.updateBackupStatuses();
                     this.updateActiveDiskBackups();
                 }, Nova.config.nova_backup_tool.polling_interval * 1000);
 
                 this.$once('hook:beforeDestroy', () => {
-                    window.clearInterval(poller);
+                    window.clearInterval(this.poller);
                 });
+            }
+        },
+
+        stopPolling() {
+            if (this.poller) {
+                window.clearInterval(this.poller);
             }
         },
     },
