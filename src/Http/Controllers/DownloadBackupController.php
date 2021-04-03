@@ -35,11 +35,11 @@ class DownloadBackupController extends ApiController
     public function respondWithBackupStream(Backup $backup): StreamedResponse
     {
         $fileName = pathinfo($backup->path(), PATHINFO_BASENAME);
-
+        $size = method_exists($backup, 'sizeInBytes') ? $backup->sizeInBytes() : $backup->size();
         $downloadHeaders = [
             'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
             'Content-Type' => 'application/zip',
-            'Content-Length' => $backup->size(),
+            'Content-Length' => $size,
             'Content-Disposition' => 'attachment; filename="'.$fileName.'"',
             'Pragma' => 'public',
         ];
