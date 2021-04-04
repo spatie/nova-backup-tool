@@ -90,19 +90,19 @@ export default {
 
     methods: {
         openDeleteModal(backup) {
-            this.$emit('stopPolling');
+            this.$emit('toggleModal', {state: true})
             this.deleteModalOpen = true;
             this.deletingBackup = backup;
         },
 
         closeDeleteModal() {
-            this.$emit('startPolling');
+            this.$emit('toggleModal', {state: false})
             this.deleteModalOpen = false;
             this.deletingBackup = null;
         },
 
         confirmDelete() {
-            this.$emit('startPolling');
+            this.$emit('toggleModal', {state: false})
             this.deleteModalOpen = false;
 
             this.$emit('delete', {
