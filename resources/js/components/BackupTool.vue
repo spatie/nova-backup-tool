@@ -145,7 +145,7 @@ export default {
             }
         },
 
-        setModalVisibility({ state }) {
+        setModalVisibility(state) {
             this.modalVisibility = state;
         },
     },
