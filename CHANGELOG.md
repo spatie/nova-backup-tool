@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.6 - 2021-04-05
+
+- fix flashing delete modal (#105)
+
 ## 4.1.5 - 2021-04-03
 
 - fix compatibility with 7.4 and 8 (#104)
