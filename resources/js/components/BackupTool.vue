@@ -45,6 +45,7 @@
                 :backups="activeDiskBackups"
                 :active-disk.sync="activeDisk"
                 @delete="deleteBackup"
+                @setModalVisibility="setModalVisibility"
             />
         </loading-card>
     </loading-view>
@@ -72,6 +73,7 @@ export default {
         activeDiskBackups: [],
         backupStatuses: [],
         initialLoading: true,
+        modalVisibility: false,
         loading: true
     }),
 
@@ -131,14 +133,20 @@ export default {
         startPolling() {
             if(Nova.config.nova_backup_tool.polling){
                 const poller = window.setInterval(() => {
-                    this.updateBackupStatuses();
-                    this.updateActiveDiskBackups();
+                    if (!this.modalVisibility) {
+                        this.updateBackupStatuses();
+                        this.updateActiveDiskBackups();
+                    }
                 }, Nova.config.nova_backup_tool.polling_interval * 1000);
 
                 this.$once('hook:beforeDestroy', () => {
                     window.clearInterval(poller);
                 });
             }
+        },
+
+        setModalVisibility(state) {
+            this.modalVisibility = state;
         },
     },
 };
