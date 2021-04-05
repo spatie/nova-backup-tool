@@ -90,19 +90,19 @@ export default {
 
     methods: {
         openDeleteModal(backup) {
-            this.$emit('toggleModal', {state: true})
+            this.$emit('setModalVisibility', {state: true})
             this.deleteModalOpen = true;
             this.deletingBackup = backup;
         },
 
         closeDeleteModal() {
-            this.$emit('toggleModal', {state: false})
+            this.$emit('setModalVisibility', {state: false})
             this.deleteModalOpen = false;
             this.deletingBackup = null;
         },
 
         confirmDelete() {
-            this.$emit('toggleModal', {state: false})
+            this.$emit('setModalVisibility', {state: false})
             this.deleteModalOpen = false;
 
             this.$emit('delete', {
