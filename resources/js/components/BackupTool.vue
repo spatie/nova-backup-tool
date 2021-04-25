@@ -57,6 +57,11 @@ import Backups from './Backups';
 import BackupStatuses from './BackupStatuses';
 
 export default {
+    metaInfo() {
+        return {
+            title: __('Backups')
+        }
+    },
     components: {
         Backups,
         BackupStatuses
