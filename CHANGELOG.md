@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.7 - 2021-05-13
+
+- Perisan - Farsi language support (#113)
+
 ## 4.1.6 - 2021-04-05
 
 - fix flashing delete modal (#105)
