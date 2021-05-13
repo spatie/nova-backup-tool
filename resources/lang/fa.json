@@ -1,0 +1,26 @@
+{
+    "Download": "بارگیری",
+    "Path": "مسیر",
+    "Created at": "ساخته شده در",
+    "Size": "حجم",
+    "No backups present": "هیچ نسخه پشتیبانی موجود نیست",
+    "Delete backup": "حذف نسخه‌ی پشتیبان",
+    "Are you sure you want to delete the backup created at :date ?": "آیا از حذف نسخه پشتیبان ساخته شده در :date اطمینان دارید؟",
+    "Disk": "دیسک",
+    "Healthy": "سالم",
+    "Amount of backups": "تعداد نسخه‌های پشتیبان",
+    "Newest backup": "جدیدترین نسخه پشتیبان",
+    "Used Storage": "فضای مصرف شده",
+    "Backups": "نسخه‌های پشتیبان",
+    "Create Backup": "ایجاد نسخه‌ی پشتیبان",
+    "Create database backup": "ایجاد نسخه‌ی پشیتبان پایگاه داده",
+    "Create files backup": "ایجاد نسخه‌ی پشتیبان پرونده‌ها",
+    "Creating a new backup in the background...": "ایجاد یک نسخه‌ی پشتیبان جدید در پس زمینه ...",
+    "B": "بایت",
+    "KB": "کیلوبایت",
+    "MB": "مگابایت",
+    "GB": "گیگابایت",
+    "TB": "ترابایت",
+    "local": "محلی"
+
+}
