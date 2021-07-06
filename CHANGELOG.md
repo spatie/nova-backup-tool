@@ -2,6 +2,10 @@
 
 All notable changes to `nova-backup-tool` will be documented in this file
 
+## 4.1.9 - 2021-07-07
+
+- add name to status overview (#115)
+
 ## 4.1.8 - 2021-05-17
 
 - add tool page title (#108)
