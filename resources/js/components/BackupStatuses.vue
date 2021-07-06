@@ -3,6 +3,9 @@
         <thead>
         <tr>
             <th class="text-left rounded-tl">
+                {{ __('Name') }}
+            </th>
+            <th class="text-left rounded-tl">
                 {{ __('Disk') }}
             </th>
             <th class="text-left">
@@ -21,6 +24,7 @@
         </thead>
         <tbody>
         <tr v-for="backupStatus in backupStatuses" :key="backupStatus.disk">
+            <td>{{ __(backupStatus.name) }}</td>
             <td>{{ __(backupStatus.disk) }}</td>
             <td>
                 <svg
