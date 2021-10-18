@@ -29,6 +29,10 @@ class DownloadBackupController extends ApiController
             return response('Backup not found', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        if ($expiration = config('nova-backup-tool.temporary_url_expiration')) {
+            return redirect()->away($backup->temporaryUrl($expiration));
+        }
+
         return $this->respondWithBackupStream($backup);
     }
 
