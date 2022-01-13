@@ -59,7 +59,7 @@ import BackupStatuses from './BackupStatuses';
 export default {
     metaInfo() {
         return {
-            title: __('Backups')
+            title: this.__('Backups')
         }
     },
     components: {
