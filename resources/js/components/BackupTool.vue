@@ -127,7 +127,7 @@ export default {
                 type: 'success',
             });
 
-            this.$refs.backupDropdownMenu.toggle();
+            this.$refs.backupDropdownMenu.$children[0].hide();
             return api.createPartialBackup(option);
         },
 
