@@ -128,19 +128,14 @@ export default {
         },
 
         createBackup() {
-            this.$toasted.show(this.__('Creating a new backup in the background...'), {
-                type: 'success',
-            });
+            Nova.success(this.__('Creating a new backup in the background...'));
 
             return api.createBackup();
         },
 
         createPartialBackup(option) {
-            this.$toasted.show(
-                this.__('Creating a new backup in the background...') + ' (' + option + ')',
-                {
-                    type: 'success',
-                }
+            Nova.success(
+                this.__('Creating a new backup in the background...') + ' (' + option + ')'
             );
 
             this.$refs.backupDropdownMenu.toggle();
