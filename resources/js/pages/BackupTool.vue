@@ -1,5 +1,6 @@
 <template>
     <LoadingView :loading="initialLoading">
+        <Head :title="__('Backups')" />
         <div class="flex mb-6 items-center justify-between">
             <Heading>
                 {{ __('Backups') }}
@@ -73,11 +74,7 @@ import Backups from '../components/Backups';
 import BackupStatuses from '../components/BackupStatuses';
 
 export default {
-    metaInfo() {
-        return {
-            title: __('Backups'),
-        };
-    },
+    inheritAttrs: false,
     components: {
         Backups,
         BackupStatuses,

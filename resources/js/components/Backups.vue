@@ -12,7 +12,7 @@
             </select>
         </div>
 
-        <table cellpadding="0" cellspacing="0" class="table w-full">
+        <table cellpadding="0" cellspacing="0" class="table-default w-full">
             <thead>
                 <tr>
                     <th class="text-left">
