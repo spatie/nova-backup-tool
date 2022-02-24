@@ -13,15 +13,15 @@
         </div>
 
         <table cellpadding="0" cellspacing="0" class="table-default w-full">
-            <thead>
+            <thead class="bg-gray-50 dark:bg-gray-800">
                 <tr>
-                    <th class="text-left">
+                    <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2 rounded-tl">
                         {{ __('Path') }}
                     </th>
-                    <th class="text-left">
+                    <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2">
                         {{ __('Created at') }}
                     </th>
-                    <th class="text-left">
+                    <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2 rounded-tr">
                         {{ __('Size') }}
                     </th>
                     <th></th>
