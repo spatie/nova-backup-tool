@@ -33,7 +33,9 @@
                     v-bind="backup"
                     :disk="activeDisk"
                     :deletable="backups.length > 1"
-                    :deleting="!deleteModalOpen && deletingBackup && backup.path === deletingBackup.path"
+                    :deleting="
+                        !deleteModalOpen && deletingBackup && backup.path === deletingBackup.path
+                    "
                     :key="backup.id"
                     @delete="openDeleteModal(backup)"
                 />
@@ -58,7 +60,12 @@
                             {{ __('Delete backup') }}
                         </heading>
                         <p class="text-80 leading-normal">
-                            {{ __('Are you sure you want to delete the backup created at :date ?', {date: deletingBackup.date}) }}
+                            {{
+                                __(
+                                    'Are you sure you want to delete the backup created at :date ?',
+                                    { date: deletingBackup.date }
+                                )
+                            }}
                         </p>
                     </div>
                 </delete-resource-modal>
@@ -90,19 +97,19 @@ export default {
 
     methods: {
         openDeleteModal(backup) {
-            this.$emit('setModalVisibility', true)
+            this.$emit('setModalVisibility', true);
             this.deleteModalOpen = true;
             this.deletingBackup = backup;
         },
 
         closeDeleteModal() {
-            this.$emit('setModalVisibility', false)
+            this.$emit('setModalVisibility', false);
             this.deleteModalOpen = false;
             this.deletingBackup = null;
         },
 
         confirmDelete() {
-            this.$emit('setModalVisibility', false)
+            this.$emit('setModalVisibility', false);
             this.deleteModalOpen = false;
 
             this.$emit('delete', {

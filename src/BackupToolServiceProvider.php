@@ -20,8 +20,6 @@ class BackupToolServiceProvider extends ServiceProvider
             __DIR__.'/../resources/lang/' => resource_path('lang/vendor/nova-backup-tool'),
         ]);
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'BackupTool');
-
         $this->registerTranslations();
 
         $this->app->booted(function () {
@@ -41,6 +39,10 @@ class BackupToolServiceProvider extends ServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
+
+
+        Nova::router(['nova', Authorize::class], 'backups')
+            ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
             ->prefix('/nova-vendor/spatie/backup-tool')

@@ -2,6 +2,8 @@
 
 namespace Spatie\BackupTool;
 
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 
@@ -12,8 +14,16 @@ class BackupTool extends Tool
         Nova::script('BackupTool', __DIR__.'/../dist/js/tool.js');
     }
 
-    public function renderNavigation()
+    /**
+     * Build the menu that renders the navigation links for the tool.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function menu(Request $request)
     {
-        return view('BackupTool::navigation');
+        return MenuSection::make('Backups')
+            ->path('/backups')
+            ->icon('server');
     }
 }
