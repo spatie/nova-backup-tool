@@ -160,6 +160,7 @@ export default {
                     }
                 }, Nova.config('nova_backup_tool').polling_interval * 1000);
 
+                // @TODO Update Vue 3 supports
                 // this.$once('hook:beforeDestroy', () => {
                 //     window.clearInterval(poller);
                 // });

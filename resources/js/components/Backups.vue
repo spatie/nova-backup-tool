@@ -78,6 +78,8 @@
 import Backup from './Backup';
 
 export default {
+    emits: ['setModalVisibility', 'delete'],
+
     props: {
         disks: { required: true, type: Array },
         activeDisk: { required: true, type: String },
