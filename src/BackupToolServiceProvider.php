@@ -40,7 +40,6 @@ class BackupToolServiceProvider extends ServiceProvider
             return;
         }
 
-
         Nova::router(['nova', Authorize::class], 'backups')
             ->group(__DIR__.'/../routes/inertia.php');
 
@@ -65,10 +64,12 @@ class BackupToolServiceProvider extends ServiceProvider
 
     protected function registerTranslations()
     {
-        $currentLocale = app()->getLocale();
+        Nova::serving(function (ServingNova $event) {
+            $currentLocale = app()->getLocale();
 
-        Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
-        Nova::translations(resource_path('lang/vendor/nova-backup-tool/'.$currentLocale.'.json'));
+            Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
+            Nova::translations(resource_path('lang/vendor/nova-backup-tool/'.$currentLocale.'.json'));
+        });
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'BackupTool');
         $this->loadJSONTranslationsFrom(__DIR__.'/../resources/lang');
