@@ -70,7 +70,7 @@
                             }}
                         </p>
                     </div>
-                </delete-resource-modal>
+                </DeleteResourceModal>
             </transition>
         </portal>
     </div>

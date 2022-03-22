@@ -140,7 +140,7 @@ export default {
                 this.__('Creating a new backup in the background...') + ' (' + option + ')'
             );
 
-            this.$refs.backupDropdownMenu.toggle();
+            this.$refs.backupDropdownMenu.delayedHideMenu();
             return api.createPartialBackup(option);
         },
 
