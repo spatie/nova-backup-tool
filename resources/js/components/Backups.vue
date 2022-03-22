@@ -12,44 +12,46 @@
             </select>
         </div>
 
-        <table cellpadding="0" cellspacing="0" class="table-default w-full">
-            <thead class="bg-gray-50 dark:bg-gray-800">
-                <tr>
-                    <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2 rounded-tl">
-                        {{ __('Path') }}
-                    </th>
-                    <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2">
-                        {{ __('Created at') }}
-                    </th>
-                    <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2 rounded-tr">
-                        {{ __('Size') }}
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <backup
-                    v-for="backup in backups"
-                    v-bind="backup"
-                    :disk="activeDisk"
-                    :deletable="backups.length > 1"
-                    :deleting="
-                        !deleteModalOpen && deletingBackup && backup.path === deletingBackup.path
-                    "
-                    :key="backup.id"
-                    @delete="openDeleteModal(backup)"
-                />
-                <tr v-if="backups.length === 0">
-                    <td class="text-center" colspan="4">
-                        {{ __('No backups present') }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="overflow-hidden overflow-x-auto relative rounded-lg">
+            <table cellpadding="0" cellspacing="0" class="table-default w-full">
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                        <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
+                            {{ __('Path') }}
+                        </th>
+                        <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
+                            {{ __('Created at') }}
+                        </th>
+                        <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
+                            {{ __('Size') }}
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <backup
+                        v-for="backup in backups"
+                        v-bind="backup"
+                        :disk="activeDisk"
+                        :deletable="backups.length > 1"
+                        :deleting="
+                            !deleteModalOpen && deletingBackup && backup.path === deletingBackup.path
+                        "
+                        :key="backup.id"
+                        @delete="openDeleteModal(backup)"
+                    />
+                    <tr v-if="backups.length === 0">
+                        <td class="text-center px-2 py-2" colspan="4">
+                            {{ __('No backups present') }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <portal to="modals">
             <transition name="fade">
-                <delete-resource-modal
+                <DeleteResourceModal
                     v-if="deleteModalOpen"
                     @confirm="confirmDelete"
                     @close="closeDeleteModal"

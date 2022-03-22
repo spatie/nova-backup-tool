@@ -52,7 +52,9 @@
         </div>
 
         <LoadingCard :loading="loading" class="mb-6">
-            <backup-statuses :backup-statuses="backupStatuses" />
+            <div class="overflow-hidden overflow-x-auto relative rounded-lg">
+                <backup-statuses :backup-statuses="backupStatuses" />
+            </div>
         </LoadingCard>
 
         <LoadingCard :loading="loading">

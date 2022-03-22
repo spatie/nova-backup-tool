@@ -1,23 +1,23 @@
 <template>
     <table cellpadding="0" cellspacing="0" class="table-default w-full">
-        <thead class="bg-gray-50 dark:bg-gray-800">
+        <thead class="bg-gray-50 dark:bg-gray-800 rounded-t-lg">
             <tr>
-                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2 rounded-tl">
+                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
                     {{ __('Name') }}
                 </th>
-                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2">
+                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
                     {{ __('Disk') }}
                 </th>
-                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2">
+                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
                     {{ __('Healthy') }}
                 </th>
-                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2">
+                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
                     {{ __('Amount of backups') }}
                 </th>
-                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2">
+                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
                     {{ __('Newest backup') }}
                 </th>
-                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide py-2 rounded-tr">
+                <th class="text-left px-2 whitespace-nowrap uppercase text-gray-500 text-xxs tracking-wide px-2 py-2">
                     {{ __('Used Storage') }}
                 </th>
             </tr>
