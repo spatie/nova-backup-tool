@@ -95,6 +95,7 @@ export default {
         initialLoading: true,
         modalVisibility: false,
         loading: true,
+        poller: null,
     }),
 
     async created() {
@@ -106,6 +107,12 @@ export default {
         this.loading = false;
 
         this.startPolling();
+    },
+
+    beforeUnmount() {
+        if (this.poller) {
+            window.clearInterval(this.poller);
+        }
     },
 
     methods: {
@@ -150,17 +157,12 @@ export default {
 
         startPolling() {
             if (Nova.config('nova_backup_tool').polling) {
-                const poller = window.setInterval(() => {
+                this.poller = window.setInterval(() => {
                     if (!this.modalVisibility) {
                         this.updateBackupStatuses();
                         this.updateActiveDiskBackups();
                     }
                 }, Nova.config('nova_backup_tool').polling_interval * 1000);
-
-                // @TODO Update Vue 3 supports
-                // this.$once('hook:beforeDestroy', () => {
-                //     window.clearInterval(poller);
-                // });
             }
         },
 
