@@ -9,7 +9,7 @@
             </button>
 
             <dropdown dusk="select-all-dropdown" ref="backupDropdownMenu">
-                <dropdown-trigger slot-scope="{ toggle }" :show-arrow="false" :handleClick="toggle" class="mr-3">
+                <dropdown-trigger :show-arrow="false">
                     <button class="btn btn-default btn-icon btn-primary font-normal no-text-shadow">
                         <icon type="menu" view-box="0 0 24 24" width="20" height="20" class="text-white" />
                     </button>
@@ -127,7 +127,7 @@ export default {
                 type: 'success',
             });
 
-            this.$refs.backupDropdownMenu.toggle();
+            this.$refs.backupDropdownMenu.$children[0].hide();
             return api.createPartialBackup(option);
         },
 
