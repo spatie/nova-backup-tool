@@ -44,17 +44,9 @@
 </template>
 
 <script>
-import IconHealthy from './icons/IconHealthy';
-import IconUnhealthy from './icons/IconUnhealthy';
-
 export default {
     props: {
         backupStatuses: { required: true, type: Array },
-    },
-
-    components: {
-        IconHealthy,
-        IconUnhealthy,
     },
 };
 </script>
