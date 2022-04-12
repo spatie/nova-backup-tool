@@ -1,3 +1,9 @@
 let mix = require('laravel-mix')
 
-mix.js('resources/js/tool.js', 'dist/js');
+require('./mix');
+
+mix
+  .setPublicPath('dist')
+  .js('resources/js/tool.js', 'js')
+  .vue({ version: 3 })
+  .nova('spatie/nova-backup-tool');

@@ -2,25 +2,26 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "mix --production",
         "check-format": "prettier --list-different 'resources/**/*.{css,js,vue}'",
         "format": "prettier --write 'resources/**/*.{css,js,vue}'",
         "lint": "eslint resources/js --fix --ext js,vue"
     },
     "devDependencies": {
+        "@vue/compiler-sfc": "^3.2.22",
         "cross-env": "^5.0.0",
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-vue": "^4.4.0",
-        "laravel-mix": "^1.0",
-        "prettier": "^1.14.2"
+        "laravel-mix": "^6.0.41",
+        "postcss": "^8.3.11",
+        "prettier": "^1.14.2",
+        "vue-loader": "^16.8.3"
     },
-    "dependencies": {
-        "vue": "^2.5.0"
-    }
+    "dependencies": {}
 }

@@ -1,9 +1,3 @@
-Nova.booting((Vue, router) => {
-    router.addRoutes([
-        {
-            name: 'BackupTool',
-            path: '/backups',
-            component: require('./components/BackupTool'),
-        },
-    ]);
+Nova.booting((Vue) => {
+    Nova.inertia('BackupTool', require('./pages/BackupTool.vue').default)
 });
