@@ -27,9 +27,12 @@
                 <td class="px-2 py-2 border-t border-gray-100 dark:border-gray-700 whitespace-nowrap cursor-pointer dark:bg-gray-800 group-hover:bg-gray-50 dark:group-hover:bg-gray-900">{{ __(backupStatus.name) }}</td>
                 <td class="px-2 py-2 border-t border-gray-100 dark:border-gray-700 whitespace-nowrap cursor-pointer dark:bg-gray-800 group-hover:bg-gray-50 dark:group-hover:bg-gray-900">{{ __(backupStatus.disk) }}</td>
                 <td class="px-2 py-2 border-t border-gray-100 dark:border-gray-700 whitespace-nowrap cursor-pointer dark:bg-gray-800 group-hover:bg-gray-50 dark:group-hover:bg-gray-900">
-                    <svg
-                        :is="backupStatus.healthy ? 'icon-healthy' : 'icon-unhealthy'"
-                        height="24px"
+                    <icon
+                        :class="backupStatus.healthy ? 'text-green-500' : 'text-red-500'"
+                        :type="backupStatus.healthy ? 'check-circle' : 'x-circle'"
+                        view-box="0 0 24 24"
+                        width="20"
+                        height="20"
                     />
                 </td>
                 <td class="px-2 py-2 border-t border-gray-100 dark:border-gray-700 whitespace-nowrap cursor-pointer dark:bg-gray-800 group-hover:bg-gray-50 dark:group-hover:bg-gray-900">{{ backupStatus.amount }}</td>

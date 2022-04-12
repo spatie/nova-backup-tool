@@ -1,15 +1,14 @@
 <template>
     <div>
-        <div v-if="disks.length > 1" class="p-3 flex items-center border-b border-50">
-            <select
-                class="form-control form-select"
+        <div class="p-3 flex items-center"
+            v-if="disks.length > 1">
+            <SelectControl
+                class="w-full md:w-1/5"
+                size="lg"
+                :options="getDiscs()"
                 :value="activeDisk"
                 @input="$emit('update:activeDisk', $event.target.value)"
-            >
-                <option v-for="disk in disks" :key="disk" :value="disk">
-                    {{ disk }}
-                </option>
-            </select>
+            />
         </div>
 
         <div class="overflow-hidden overflow-x-auto relative rounded-lg">
@@ -49,30 +48,22 @@
             </table>
         </div>
 
-        <portal to="modals">
-            <transition name="fade">
-                <DeleteResourceModal
-                    v-if="deleteModalOpen"
-                    @confirm="confirmDelete"
-                    @close="closeDeleteModal"
-                    mode="delete"
-                >
-                    <div class="p-8">
-                        <heading :level="2" class="mb-6">
-                            {{ __('Delete backup') }}
-                        </heading>
-                        <p class="text-80 leading-normal">
-                            {{
-                                __(
-                                    'Are you sure you want to delete the backup created at :date ?',
-                                    { date: deletingBackup.date }
-                                )
-                            }}
-                        </p>
-                    </div>
-                </DeleteResourceModal>
-            </transition>
-        </portal>
+        <DeleteResourceModal
+            mode="delete"
+            :show="deleteModalOpen"
+            @close="closeDeleteModal"
+            @confirm="confirmDelete"
+        >
+            <ModalHeader v-text="__('Delete backup')" />
+            <ModalContent>
+                <p
+                    class="leading-normal"
+                    v-text="__('Are you sure you want to delete the backup created at :date ?', {
+                        date: deletingBackup.date,
+                    })"
+                />
+            </ModalContent>
+        </DeleteResourceModal>
     </div>
 </template>
 
@@ -100,6 +91,10 @@ export default {
     },
 
     methods: {
+        getDiscs() {
+            return this.disks.map(val => ({ value: val, label: val }));
+        },
+
         openDeleteModal(backup) {
             this.$emit('setModalVisibility', true);
             this.deleteModalOpen = true;

@@ -20,7 +20,7 @@
                 :disabled="!deletable"
                 @click.prevent="$emit('delete')"
             >
-                <icon type="delete" />
+                <icon type="trash" view-box="0 0 24 24" width="20" height="20" />
             </button>
         </td>
     </tr>
