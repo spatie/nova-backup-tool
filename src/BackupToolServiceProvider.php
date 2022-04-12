@@ -20,8 +20,6 @@ class BackupToolServiceProvider extends ServiceProvider
             __DIR__.'/../resources/lang/' => resource_path('lang/vendor/nova-backup-tool'),
         ]);
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'BackupTool');
-
         $this->registerTranslations();
 
         $this->app->booted(function () {
@@ -41,6 +39,9 @@ class BackupToolServiceProvider extends ServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
+
+        Nova::router(['nova', Authorize::class], 'backups')
+            ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
             ->prefix('/nova-vendor/spatie/backup-tool')
@@ -63,10 +64,12 @@ class BackupToolServiceProvider extends ServiceProvider
 
     protected function registerTranslations()
     {
-        $currentLocale = app()->getLocale();
+        Nova::serving(function (ServingNova $event) {
+            $currentLocale = app()->getLocale();
 
-        Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
-        Nova::translations(resource_path('lang/vendor/nova-backup-tool/'.$currentLocale.'.json'));
+            Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
+            Nova::translations(resource_path('lang/vendor/nova-backup-tool/'.$currentLocale.'.json'));
+        });
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'BackupTool');
         $this->loadJSONTranslationsFrom(__DIR__.'/../resources/lang');
