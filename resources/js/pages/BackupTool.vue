@@ -1,54 +1,46 @@
 <template>
     <LoadingView :loading="initialLoading">
         <Head :title="__('Backups')" />
+
         <div class="flex mb-6 items-center justify-between">
             <Heading>
                 {{ __('Backups') }}
             </Heading>
-            <DefaultButton @click="createBackup">
-                {{ __('Create Backup') }}
-            </DefaultButton>
 
-            <Dropdown dusk="select-all-dropdown" ref="backupDropdownMenu">
-                <DropdownTrigger
-                    slot-scope="{ toggle }"
-                    :show-arrow="false"
-                    :handleClick="toggle"
-                    class="mr-3"
-                >
-                    <button class="rounded active:outline-none active:ring focus:outline-none focus:ring">
-                        <icon
-                            type="menu"
-                            view-box="0 0 24 24"
-                            width="20"
-                            height="20"
-                        />
-                    </button>
-                </DropdownTrigger>
+            <div class="flex items-center justify-end space-x-2">
+                <Dropdown dusk="select-all-dropdown" ref="backupDropdownMenu">
+                    <DropdownTrigger
+                        :show-arrow="false"
+                        class="rounded hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none focus:ring"
+                    >
+                        <BasicButton component="span">
+                            <Icon :solid="true" type="dots-horizontal" />
+                        </BasicButton>
+                    </DropdownTrigger>
 
-                <template #menu>
-                    <DropdownMenu slot="menu" direction="rtl" width="250">
-                        <ul class="list-reset">
-                            <li>
-                                <a
-                                    class="block p-3 text-90 hover:bg-30 cursor-pointer"
-                                    @click.prevent="createPartialBackup('only-db')"
-                                >
-                                    {{ __('Create database backup') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="block p-3 text-90 hover:bg-30 cursor-pointer"
-                                    @click.prevent="createPartialBackup('only-files')"
-                                >
-                                    {{ __('Create files backup') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </DropdownMenu>
-                </template>
-            </Dropdown>
+                    <template #menu>
+                        <DropdownMenu slot="menu" direction="rtl" width="250">
+                            <DropdownMenuItem
+                                as="button"
+                                @click.prevent="createPartialBackup('only-db')"
+                            >
+                                {{ __('Create database backup') }}
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem
+                                as="button"
+                                @click.prevent="createPartialBackup('only-files')"
+                            >
+                                {{ __('Create files backup') }}
+                            </DropdownMenuItem>
+                        </DropdownMenu>
+                    </template>
+                </Dropdown>
+
+                <DefaultButton @click="createBackup">
+                    {{ __('Create Backup') }}
+                </DefaultButton>
+            </div>
         </div>
 
         <LoadingCard :loading="loading" class="mb-6">
