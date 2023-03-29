@@ -22,7 +22,7 @@ class BackupTool extends Tool
      */
     public function menu(Request $request)
     {
-        return MenuSection::make('Backups')
+        return MenuSection::make(__('Backups'))
             ->path('/backups')
             ->icon('server');
     }
