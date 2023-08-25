@@ -69,10 +69,12 @@ class BackupToolServiceProvider extends ServiceProvider
 
             Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
             Nova::translations(resource_path('lang/vendor/nova-backup-tool/'.$currentLocale.'.json'));
+            Nova::translations(lang_path('vendor/nova-backup-tool/'.$currentLocale.'.json'));
         });
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'BackupTool');
         $this->loadJSONTranslationsFrom(__DIR__.'/../resources/lang');
         $this->loadJSONTranslationsFrom(resource_path('lang/vendor/nova-backup-tool'));
+        $this->loadJSONTranslationsFrom(lang_path('vendor/nova-backup-tool'));
     }
 }
