@@ -40,10 +40,10 @@ class BackupToolServiceProvider extends ServiceProvider
             return;
         }
 
-        Nova::router(['nova', Authorize::class], 'backups')
+        Nova::router(config('nova.api_middleware', []), 'backups')
             ->group(__DIR__.'/../routes/inertia.php');
 
-        Route::middleware(['nova', Authorize::class])
+        Route::middleware(config('nova.api_middleware', []))
             ->prefix('/nova-vendor/spatie/backup-tool')
             ->group(
                 __DIR__.'/../routes/api.php'
