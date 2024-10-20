@@ -12,7 +12,12 @@ class BackupStatusesController extends ApiController
     public function index()
     {
         return Cache::remember('backup-statuses', now()->addSeconds(4), function () {
-            return BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitor_backups'))
+            $monitorConfiguration = (new \ReflectionMethod(BackupDestinationStatusFactory::class, 'createForMonitorConfig'))
+                ->getParameters()[0]->getType()->getName() === 'Spatie\Backup\Config\MonitoredBackupsConfig'
+                ? \Spatie\Backup\Config\MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'))
+                : config('backup.monitor_backups');
+
+            return BackupDestinationStatusFactory::createForMonitorConfig($monitorConfiguration)
                 ->map(function (BackupDestinationStatus $backupDestinationStatus) {
                     return [
                         'name' => $backupDestinationStatus->backupDestination()->backupName(),
