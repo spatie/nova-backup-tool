@@ -12,12 +12,7 @@ class BackupStatusesController extends ApiController
     public function index()
     {
         return Cache::remember('backup-statuses', now()->addSeconds(4), function () {
-            $monitorConfiguration = (new \ReflectionMethod(BackupDestinationStatusFactory::class, 'createForMonitorConfig'))
-                ->getParameters()[0]->getType()->getName() === 'Spatie\Backup\Config\MonitoredBackupsConfig'
-                ? \Spatie\Backup\Config\MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'))
-                : config('backup.monitor_backups');
-
-            return BackupDestinationStatusFactory::createForMonitorConfig($monitorConfiguration)
+            return BackupDestinationStatusFactory::createForMonitorConfig($this->getMonitorConfig())
                 ->map(function (BackupDestinationStatus $backupDestinationStatus) {
                     return [
                         'name' => $backupDestinationStatus->backupDestination()->backupName(),
@@ -34,5 +29,21 @@ class BackupStatusesController extends ApiController
                 ->values()
                 ->toArray();
         });
+    }
+
+    /**
+     * Get monitor configuration data.
+     * spatie/laravel-backup ^9.x introduce DTO parameter instead of array.
+     *
+     * @return \Spatie\Backup\Config\MonitoredBackupsConfig|array
+     */
+    protected function getMonitorConfig()
+    {
+        $reflection = new \ReflectionMethod(BackupDestinationStatusFactory::class, 'createForMonitorConfig');
+        $monitorBackupsType = $reflection->getParameters()[0]->getType()->getName();
+
+        return $monitorBackupsType === 'Spatie\Backup\Config\MonitoredBackupsConfig'
+            ? \Spatie\Backup\Config\MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'))
+            : config('backup.monitor_backups');
     }
 }
