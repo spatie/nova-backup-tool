@@ -1,8 +1,10 @@
 laravel: '@testbench'
 
 providers:
+  - Inertia\ServiceProvider
   - Laravel\Nova\NovaServiceProvider
   - Laravel\Nova\NovaCoreServiceProvider
+  - Spatie\Backup\BackupServiceProvider
   - Spatie\BackupTool\BackupToolServiceProvider
   - Workbench\App\Providers\NovaServiceProvider
   # - Workbench\App\Providers\WorkbenchServiceProvider

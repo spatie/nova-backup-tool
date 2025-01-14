@@ -152,7 +152,6 @@ return [
              */
             'disks' => [
                 'local',
-                'public',
             ],
         ],
 
