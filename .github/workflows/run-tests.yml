@@ -8,19 +8,9 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                php: [8.2, 8.1, 8.0, 7.4]
-                laravel: [7.*, 8.*]
+                php: [8.4, 8.3, 8.2, 8.1]
+                laravel: [11.*, 10.*]
                 dependency-version: [prefer-stable]
-                include:
-                    -   laravel: 8.*
-                        testbench: 6.*
-                    -   laravel: 7.*
-                        testbench: 5.*
-                exclude:
-                    -   php: 8.2
-                        laravel: 7.*
-                    -   php: 8.1
-                        laravel: 7.*
 
         name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
@@ -37,8 +27,7 @@ jobs:
 
             -   name: Install dependencies
                 run: |
-                    composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:^2.63" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+                    composer update --${{ matrix.dependency-version }} --with="laravel/framework:${{ matrix.laravel }}" --prefer-dist --no-interaction --no-suggest
                 env:
                     COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
