@@ -20,6 +20,8 @@ workbench:
     - create-sqlite-db
     - db:wipe
     - migrate:refresh
+  discovers:
+    config: true
   assets:
     - nova-assets
   sync: []
