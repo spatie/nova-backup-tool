@@ -20,31 +20,30 @@
                 :disabled="!deletable"
                 @click.prevent="$emit('delete')"
             >
-                <icon type="trash" view-box="0 0 24 24" width="20" height="20" />
+                <Icon name="trash" />
             </button>
         </td>
     </tr>
 </template>
 
-<script>
-export default {
-    props: {
-        date: { required: true },
-        path: { required: true },
-        size: { required: true },
-        disk: { required: true },
-        deletable: { required: true },
-        deleting: { required: true },
-    },
+<script setup>
+import { Icon } from 'laravel-nova-ui';
+import { computed } from 'vue';
 
-    computed: {
-        downloadUrl() {
-            const endpoint = '/nova-vendor/spatie/backup-tool/download-backup';
+const props = defineProps({
+    date: { required: true },
+    path: { required: true },
+    size: { required: true },
+    disk: { required: true },
+    deletable: { required: true },
+    deleting: { required: true },
+});
 
-            return `${endpoint}?disk=${this.disk}&path=${this.path}`;
-        },
-    },
-};
+const downloadUrl = computed(() => {
+    const endpoint = '/nova-vendor/spatie/backup-tool/download-backup';
+
+    return `${endpoint}?disk=${prop.disk}&path=${props.path}`;
+});
 </script>
 
 <style scoped>

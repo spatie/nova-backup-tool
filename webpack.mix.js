@@ -1,6 +1,6 @@
-let mix = require('laravel-mix')
+let mix = require('laravel-mix');
 
-require('./mix');
+mix.extend('nova', new require('laravel-nova-devtool'));
 
 mix
   .setPublicPath('dist')

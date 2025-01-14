@@ -44,7 +44,7 @@ Next up, you must register the tool with Nova. This is typically done in the `to
 
 // ...
 
-public function tools()
+public function tools(): array
 {
     return [
         // ...

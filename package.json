@@ -13,15 +13,11 @@
         "lint": "eslint resources/js --fix --ext js,vue"
     },
     "devDependencies": {
-        "@vue/compiler-sfc": "^3.2.22",
         "cross-env": "^5.0.0",
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-vue": "^4.4.0",
-        "laravel-mix": "^6.0.41",
-        "postcss": "^8.3.11",
-        "prettier": "^1.14.2",
-        "vue-loader": "^16.8.3"
-    },
-    "dependencies": {}
+        "laravel-nova-devtool": "file:vendor/laravel/nova-devtool",
+        "prettier": "^1.14.2"
+    }
 }

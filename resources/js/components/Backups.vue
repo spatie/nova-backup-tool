@@ -6,7 +6,7 @@
                 class="w-full md:w-1/5"
                 size="lg"
                 :options="getDiscs()"
-                :value="activeDisk"
+                v-model="activeDisk"
                 @input="$emit('update:activeDisk', $event.target.value)"
             />
         </div>
