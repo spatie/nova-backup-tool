@@ -1,9 +1,9 @@
 /build
 /vendor
 /node_modules
-package-lock.json
 composer.phar
 composer.lock
 phpunit.xml
 auth.json
 php_cs.cache
+.phpunit.cache/

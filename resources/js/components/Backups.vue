@@ -6,8 +6,8 @@
                 class="w-full md:w-1/5"
                 size="lg"
                 :options="getDiscs()"
-                :value="activeDisk"
-                @input="$emit('update:activeDisk', $event.target.value)"
+                v-model="currentDisk"
+                @selected="$emit('update:activeDisk', $event.target.value)"
             />
         </div>
 
@@ -83,6 +83,7 @@ export default {
         return {
             deletingBackup: null,
             deleteModalOpen: false,
+            currentDisk: this.activeDisk,
         };
     },
 

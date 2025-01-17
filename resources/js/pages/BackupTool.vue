@@ -13,9 +13,7 @@
                         :show-arrow="false"
                         class="rounded hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none focus:ring"
                     >
-                        <BasicButton component="span">
-                            <Icon :solid="true" type="dots-horizontal" />
-                        </BasicButton>
+                        <Button variant="ghost" icon="ellipsis-horizontal" />
                     </DropdownTrigger>
 
                     <template #menu>
@@ -37,9 +35,9 @@
                     </template>
                 </Dropdown>
 
-                <DefaultButton @click="createBackup">
+                <Button variant="solid" @click="createBackup">
                     {{ __('Create Backup') }}
-                </DefaultButton>
+                </Button>
             </div>
         </div>
 
@@ -66,12 +64,15 @@
 import api from '../api';
 import Backups from '../components/Backups';
 import BackupStatuses from '../components/BackupStatuses';
+import { Button, Icon } from 'laravel-nova-ui';
 
 export default {
     inheritAttrs: false,
     components: {
         Backups,
         BackupStatuses,
+        Button,
+        Icon,
     },
 
     computed: {
