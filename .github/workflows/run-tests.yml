@@ -11,11 +11,11 @@ jobs:
                 php: [8.4, 8.3, 8.2, 8.1]
                 laravel: [11.*, 10.*]
                 dependency-version: [prefer-stable]
-            exclude:
-                -   php: 8.1
-                    laravel: 11.*
-                -   php: 8.4
-                    laravel: 10.*
+                exclude:
+                    -   php: 8.1
+                        laravel: 11.*
+                    -   php: 8.4
+                        laravel: 10.*
 
 
         name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
