@@ -42,7 +42,7 @@ const props = defineProps({
 const downloadUrl = computed(() => {
     const endpoint = '/nova-vendor/spatie/backup-tool/download-backup';
 
-    return `${endpoint}?disk=${prop.disk}&path=${props.path}`;
+    return `${endpoint}?disk=${props.disk}&path=${props.path}`;
 });
 </script>
 
