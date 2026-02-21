@@ -17,14 +17,14 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^10.48.23|^11.35|^12.0",
+        "illuminate/support": "^10.48.23|^11.35|^12.0|^13.0",
         "laravel/nova": "^5.0",
         "nesbot/carbon": "^2.62.1|^3.4",
         "spatie/laravel-backup": "^9.0"
     },
     "require-dev": {
         "laravel/nova-devtool": "^1.4",
-        "orchestra/testbench": "^8.30|^9.7|^10.0",
+        "orchestra/testbench": "^8.30|^9.7|^10.0|^11.0",
         "spatie/phpunit-snapshot-assertions": "^5.1.7"
     },
     "repositories": [
