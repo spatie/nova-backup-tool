@@ -9,9 +9,9 @@
                 target="_blank"
                 rel="noopener nofollow"
                 :title="__('Download')"
-                class="appearance-none cursor-pointer text-70 hover:text-primary mr-3"
+                class="appearance-none cursor-pointer text-70 hover:text-primary mr-3 inline-flex items-center"
             >
-                <icon type="download" view-box="0 0 24 24" width="20" height="20" />
+                <Icon name="download" />
             </a>
             <button
                 :title="__('Delete')"

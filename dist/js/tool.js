@@ -347,12 +347,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     target: "_blank",
     rel: "noopener nofollow",
     title: _ctx.__('Download'),
-    "class": "appearance-none cursor-pointer text-70 hover:text-primary mr-3"
+    "class": "appearance-none cursor-pointer text-70 hover:text-primary mr-3 inline-flex items-center"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Icon"], {
-    type: "download",
-    "view-box": "0 0 24 24",
-    width: "20",
-    height: "20"
+    name: "download"
   })], 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     title: _ctx.__('Delete'),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["appearance-none mr-3", $props.deletable ? 'text-70 hover:text-primary' : 'cursor-default text-40']),
