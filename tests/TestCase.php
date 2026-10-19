@@ -4,10 +4,12 @@ namespace Spatie\BackupTool\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Storage;
+use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Workbench\Database\Factories\UserFactory;
 
+#[WithMigration('laravel', 'cache', 'queue')]
 abstract class TestCase extends Orchestra
 {
     use DatabaseMigrations;
@@ -16,9 +18,7 @@ abstract class TestCase extends Orchestra
     /** @var array<int, string> */
     protected $connectionsToTransact = ['testing'];
 
-    /** {@inheritDoc} */
-    #[\Override]
-    protected function defineEnvironment($app)
+    protected function defineEnvironment($app): void
     {
         $app['config']->set('backup.backup.name', 'Laravel');
 
@@ -35,7 +35,7 @@ abstract class TestCase extends Orchestra
         $app['config']->set('mail.driver', 'log');
     }
 
-    protected function createBackup()
+    protected function createBackup(): void
     {
         $this
             ->actingAs(UserFactory::new()->create())

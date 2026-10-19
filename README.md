@@ -25,6 +25,8 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Requirements
 
+This package requires PHP 8.3 or higher, Laravel 12 or 13, and Laravel Nova 5.
+
 Make sure you meet [the requirements for installing spatie/laravel-backup](https://docs.spatie.be/laravel-backup/v6/requirements).
 
 ## Installation

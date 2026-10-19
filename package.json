@@ -8,16 +8,23 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
+        "test": "vitest run",
         "check-format": "prettier --list-different 'resources/**/*.{css,js,vue}'",
         "format": "prettier --write 'resources/**/*.{css,js,vue}'",
         "lint": "eslint resources/js --fix --ext js,vue"
     },
     "devDependencies": {
+        "@vitejs/plugin-vue": "^6.0.10",
+        "@vue/server-renderer": "^3.5.44",
         "cross-env": "^5.0.0",
         "eslint": "^4.19.1",
         "eslint-config-prettier": "^2.9.0",
         "eslint-plugin-vue": "^4.4.0",
         "laravel-nova-devtool": "file:vendor/laravel/nova-devtool",
-        "prettier": "^1.14.2"
+        "laravel-nova-ui": "^0.4.12",
+        "prettier": "^1.14.2",
+        "vitest": "^5.0.5",
+        "vue": "^3.5.44",
+        "webpack": "~5.105.4"
     }
 }
