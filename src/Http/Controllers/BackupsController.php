@@ -16,7 +16,7 @@ class BackupsController extends ApiController
     public function index(Request $request)
     {
         $validated = $request->validate([
-            'disk' => ['required', new BackupDisk()],
+            'disk' => ['required', new BackupDisk],
         ]);
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
@@ -48,8 +48,8 @@ class BackupsController extends ApiController
     public function delete(Request $request)
     {
         $validated = $request->validate([
-            'disk' => new BackupDisk(),
-            'path' => ['required', new PathToZip()],
+            'disk' => new BackupDisk,
+            'path' => ['required', new PathToZip],
         ]);
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));

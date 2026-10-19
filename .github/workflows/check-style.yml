@@ -1,0 +1,27 @@
+name: Check PHP styling
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install Pint without private Nova dependencies
+        run: composer create-project laravel/pint build/pint '^1.27' --no-dev --no-interaction
+
+      - name: Check style
+        run: build/pint/builds/pint --test src tests

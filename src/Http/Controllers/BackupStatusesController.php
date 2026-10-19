@@ -3,6 +3,7 @@
 namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Support\Facades\Cache;
+use Spatie\Backup\Config\MonitoredBackupsConfig;
 use Spatie\Backup\Helpers\Format;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatus;
 use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
@@ -35,7 +36,7 @@ class BackupStatusesController extends ApiController
      * Get monitor configuration data.
      * spatie/laravel-backup ^9.x introduce DTO parameter instead of array.
      *
-     * @return \Spatie\Backup\Config\MonitoredBackupsConfig|array
+     * @return MonitoredBackupsConfig|array
      */
     protected function getMonitorConfig()
     {
@@ -43,7 +44,7 @@ class BackupStatusesController extends ApiController
         $monitorBackupsType = $reflection->getParameters()[0]->getType()->getName();
 
         return $monitorBackupsType === 'Spatie\Backup\Config\MonitoredBackupsConfig'
-            ? \Spatie\Backup\Config\MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'))
+            ? MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'))
             : config('backup.monitor_backups');
     }
 }

@@ -15,8 +15,8 @@ class DownloadBackupController extends ApiController
     public function __invoke(Request $request)
     {
         $validated = $request->validate([
-            'disk' => new BackupDisk(),
-            'path' => ['required', new PathToZip()],
+            'disk' => new BackupDisk,
+            'path' => ['required', new PathToZip],
         ]);
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));

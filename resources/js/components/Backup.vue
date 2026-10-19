@@ -11,7 +11,7 @@
                 :title="__('Download')"
                 class="appearance-none cursor-pointer text-70 hover:text-primary mr-3 inline-flex items-center"
             >
-                <Icon name="download" />
+                <Icon name="arrow-down-tray" />
             </a>
             <button
                 :title="__('Delete')"
