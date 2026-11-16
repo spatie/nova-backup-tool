@@ -2,9 +2,12 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Workbench\Database\Factories\UserFactory;
 
 it('can get all backup statuses', function () {
+    Storage::fake('local');
+
     $this
         ->actingAs(UserFactory::new()->create())
         ->getJson('/nova-vendor/spatie/backup-tool/backup-statuses')

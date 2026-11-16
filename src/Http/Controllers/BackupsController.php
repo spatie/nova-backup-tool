@@ -4,6 +4,7 @@ namespace Spatie\BackupTool\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Validation\Rule;
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Helpers\Format;
@@ -39,28 +40,38 @@ class BackupsController extends ApiController
 
     public function create(Request $request)
     {
-        $option = $request->input('option', '');
+        $validated = $request->validate([
+            'option' => ['nullable', 'string', Rule::in(['only-db', 'only-files'])],
+        ]);
 
-        dispatch(new CreateBackupJob($option))
+        dispatch(new CreateBackupJob($validated['option'] ?? ''))
             ->onQueue(config('nova-backup-tool.queue'));
     }
 
     public function delete(Request $request)
     {
         $validated = $request->validate([
-            'disk' => new BackupDisk,
-            'path' => ['required', new PathToZip],
+            'disk' => ['required', 'string', new BackupDisk],
+            'path' => ['bail', 'required', 'string', new PathToZip],
         ]);
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));
 
-        $backupDestination
+        $backup = $backupDestination
             ->backups()
             ->first(function (Backup $backup) use ($validated) {
                 return $backup->path() === $validated['path'];
-            })
-            ->delete();
+            });
 
-        $this->respondSuccess();
+        if (! $backup) {
+            return response('Backup not found', 422);
+        }
+
+        $backup->delete();
+
+        Cache::forget("backups-{$validated['disk']}");
+        Cache::forget('backup-statuses');
+
+        return $this->respondSuccess();
     }
 }

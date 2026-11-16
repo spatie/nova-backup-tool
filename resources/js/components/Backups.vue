@@ -4,10 +4,10 @@
             v-if="disks.length > 1">
             <SelectControl
                 class="w-full md:w-1/5"
-                size="lg"
+                :aria-label="__('Disk')"
                 :options="getDiscs()"
-                v-model="currentDisk"
-                @selected="$emit('update:activeDisk', $event.target.value)"
+                :model-value="activeDisk"
+                @update:model-value="$emit('update:activeDisk', $event)"
             />
         </div>
 
@@ -36,7 +36,7 @@
                         :deleting="
                             !deleteModalOpen && deletingBackup && backup.path === deletingBackup.path
                         "
-                        :key="backup.id"
+                        :key="backup.path"
                         @delete="openDeleteModal(backup)"
                     />
                     <tr v-if="backups.length === 0">
@@ -54,15 +54,19 @@
             @close="closeDeleteModal"
             @confirm="confirmDelete"
         >
-            <ModalHeader v-text="__('Delete backup')" />
-            <ModalContent>
-                <p
-                    class="leading-normal"
-                    v-text="__('Are you sure you want to delete the backup created at :date ?', {
-                        date: deletingBackup.date,
-                    })"
-                />
-            </ModalContent>
+            <template #header>
+                <ModalHeader v-text="__('Delete backup')" />
+            </template>
+            <template #content>
+                <ModalContent v-if="deletingBackup">
+                    <p
+                        class="leading-normal"
+                        v-text="__('Are you sure you want to delete the backup created at :date ?', {
+                            date: deletingBackup.date,
+                        })"
+                    />
+                </ModalContent>
+            </template>
         </DeleteResourceModal>
     </div>
 </template>
@@ -71,7 +75,7 @@
 import Backup from './Backup';
 
 export default {
-    emits: ['setModalVisibility', 'delete'],
+    emits: ['setModalVisibility', 'delete', 'update:activeDisk'],
 
     props: {
         disks: { required: true, type: Array },
@@ -83,7 +87,6 @@ export default {
         return {
             deletingBackup: null,
             deleteModalOpen: false,
-            currentDisk: this.activeDisk,
         };
     },
 

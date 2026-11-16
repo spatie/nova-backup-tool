@@ -6,12 +6,15 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Backup\Config\Config;
 use Spatie\Backup\Tasks\Backup\BackupJobFactory;
 
 class CreateBackupJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
 
     protected $option;
 
@@ -35,9 +38,15 @@ class CreateBackupJob implements ShouldQueue
         if (! empty($this->option)) {
             $prefix = str_replace('_', '-', $this->option).'-';
 
-            $backupJob->setFilename($prefix.date('Y-m-d-H-i-s').'.zip');
+            $backupJob->setFilename($prefix.now()->format('Y-m-d-H-i-s').'.zip');
         }
 
         $backupJob->run();
+
+        foreach ($config->backup->destination->disks as $disk) {
+            Cache::forget("backups-{$disk}");
+        }
+
+        Cache::forget('backup-statuses');
     }
 }

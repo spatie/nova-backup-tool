@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Workbench\Database\Factories\UserFactory;
 
@@ -15,9 +16,18 @@ it('can download a backup', function () {
         ->actingAs(UserFactory::new()->create())
         ->getJson('/nova-vendor/spatie/backup-tool/download-backup?disk=local&path=Laravel/2018-01-01-00-00-00.zip')
         ->assertSuccessful()
+        ->assertHeader('Content-Type', 'application/zip')
+        ->assertStreamedContent(Storage::disk('local')->get('Laravel/2018-01-01-00-00-00.zip'))
         ->baseResponse;
 
     expect($response)->toBeInstanceOf(StreamedResponse::class);
+});
+
+it('requires a disk when downloading a backup', function () {
+    $this
+        ->actingAs(UserFactory::new()->create())
+        ->getJson('/nova-vendor/spatie/backup-tool/download-backup?path=Laravel/2018-01-01-00-00-00.zip')
+        ->assertJsonValidationErrors(['disk']);
 });
 
 it('will not accept non zip files', function () {

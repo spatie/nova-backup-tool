@@ -52,7 +52,8 @@
                 v-if="activeDisk"
                 :disks="disks"
                 :backups="activeDiskBackups"
-                :active-disk.sync="activeDisk"
+                v-model:active-disk="activeDisk"
+                @update:active-disk="updateActiveDiskBackups"
                 @delete="deleteBackup"
                 @setModalVisibility="setModalVisibility"
             />
@@ -113,7 +114,7 @@ export default {
             return api.getBackupStatuses().then(backupStatuses => {
                 this.backupStatuses = backupStatuses;
 
-                if (!this.activeDisk) {
+                if (!this.activeDisk && backupStatuses.length > 0) {
                     this.activeDisk = backupStatuses[0].disk;
                 }
             });

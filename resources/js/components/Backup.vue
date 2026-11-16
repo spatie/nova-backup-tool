@@ -9,12 +9,14 @@
                 target="_blank"
                 rel="noopener nofollow"
                 :title="__('Download')"
+                :aria-label="__('Download')"
                 class="appearance-none cursor-pointer text-70 hover:text-primary mr-3 inline-flex items-center"
             >
                 <Icon name="arrow-down-tray" />
             </a>
             <button
                 :title="__('Delete')"
+                :aria-label="__('Delete')"
                 class="appearance-none mr-3"
                 :class="deletable ? 'text-70 hover:text-primary' : 'cursor-default text-40'"
                 :disabled="!deletable"
@@ -42,7 +44,7 @@ const props = defineProps({
 const downloadUrl = computed(() => {
     const endpoint = '/nova-vendor/spatie/backup-tool/download-backup';
 
-    return `${endpoint}?disk=${props.disk}&path=${props.path}`;
+    return `${endpoint}?${new URLSearchParams({ disk: props.disk, path: props.path })}`;
 });
 </script>
 

@@ -32,19 +32,8 @@ class BackupStatusesController extends ApiController
         });
     }
 
-    /**
-     * Get monitor configuration data.
-     * spatie/laravel-backup ^9.x introduce DTO parameter instead of array.
-     *
-     * @return MonitoredBackupsConfig|array
-     */
     protected function getMonitorConfig()
     {
-        $reflection = new \ReflectionMethod(BackupDestinationStatusFactory::class, 'createForMonitorConfig');
-        $monitorBackupsType = $reflection->getParameters()[0]->getType()->getName();
-
-        return $monitorBackupsType === 'Spatie\Backup\Config\MonitoredBackupsConfig'
-            ? MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'))
-            : config('backup.monitor_backups');
+        return MonitoredBackupsConfig::fromArray(config('backup.monitor_backups'));
     }
 }

@@ -4,6 +4,7 @@ namespace Spatie\BackupTool\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Laravel\Nova\Nova;
 use Spatie\BackupTool\BackupTool;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,8 +12,11 @@ class Authorize
 {
     public function handle(Request $request, Closure $next): Response
     {
-        return app(BackupTool::class)->authorize($request)
-            ? $next($request)
-            : abort(403);
+        abort_unless(
+            collect(Nova::availableTools($request))->contains(fn ($tool) => $tool instanceof BackupTool),
+            403,
+        );
+
+        return $next($request);
     }
 }
