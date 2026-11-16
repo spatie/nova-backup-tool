@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           if [ -z "$NOVA_USERNAME" ] || [ -z "$NOVA_LICENSE_KEY" ]; then
-            echo "::error::Set NOVA_USERNAME and NOVA_LICENSE_KEY in the repository Actions secrets."
+            echo "::error::Grant this repository access to the NOVA_USERNAME and NOVA_LICENSE_KEY organization Actions secrets."
             exit 1
           fi
           composer config --global --auth http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
