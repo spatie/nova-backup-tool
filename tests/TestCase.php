@@ -20,6 +20,8 @@ abstract class TestCase extends Orchestra
 
     protected function defineEnvironment($app): void
     {
+        $app['config']->set('app.key', '01234567890123456789012345678901');
+
         $app['config']->set('backup.backup.name', 'Laravel');
 
         $app['config']->set('backup.monitor_backups', [

@@ -2,11 +2,11 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Spatie\Backup\BackupDestination\Backup;
 use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\BackupTool\Rules\BackupDisk;
 use Spatie\BackupTool\Rules\PathToZip;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -15,8 +15,8 @@ class DownloadBackupController extends ApiController
     public function __invoke(Request $request)
     {
         $validated = $request->validate([
-            'disk' => new BackupDisk,
-            'path' => ['required', new PathToZip],
+            'disk' => ['required', 'string', new BackupDisk],
+            'path' => ['bail', 'required', 'string', new PathToZip],
         ]);
 
         $backupDestination = BackupDestination::create($validated['disk'], config('backup.backup.name'));

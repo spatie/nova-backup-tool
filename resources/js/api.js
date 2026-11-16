@@ -7,7 +7,7 @@ export default {
 
     getBackups(disk) {
         return Nova.request()
-            .get(`/nova-vendor/spatie/backup-tool/backups?disk=${disk}`)
+            .get('/nova-vendor/spatie/backup-tool/backups', { params: { disk } })
             .then(response => response.data);
     },
 

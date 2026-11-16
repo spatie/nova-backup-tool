@@ -7,9 +7,9 @@ it('renders the download action with a real Nova icon', async () => {
     const app = createSSRApp({
         render: () => h(Backup, {
             date: '2026-10-19 10:00:00',
-            path: 'Laravel/2026-10-19-10-00-00.zip',
+            path: 'Laravel & Co/2026-10-19 #1.zip',
             size: '12 MB',
-            disk: 'local',
+            disk: 'local & remote',
             deletable: false,
             deleting: false,
         }),
@@ -21,6 +21,10 @@ it('renders the download action with a real Nova icon', async () => {
     const downloadLink = html.match(/<a\b[^>]*>(.*?)<\/a>/s)?.[0];
 
     expect(downloadLink).toContain('title="Download"');
-    expect(downloadLink).toContain('disk=local&amp;path=Laravel/2026-10-19-10-00-00.zip');
+    const href = downloadLink.match(/href="([^"]+)"/)[1].replaceAll('&amp;', '&');
+    const url = new URL(href, 'https://example.com');
+
+    expect(url.searchParams.get('disk')).toBe('local & remote');
+    expect(url.searchParams.get('path')).toBe('Laravel & Co/2026-10-19 #1.zip');
     expect(downloadLink).toMatch(/<svg\b[^>]*>[\s\S]*<path\b/);
 });

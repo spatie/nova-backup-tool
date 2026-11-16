@@ -14,7 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.3', '8.4', '8.5', '8.6']
+        # Add PHP 8.6 once Nova's dependencies support it.
+        php: ['8.3', '8.4', '8.5']
         laravel: ['12.*', '13.*']
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
@@ -36,9 +37,15 @@ jobs:
 
       - name: Install dependencies
         run: |
+          if [ -z "$NOVA_USERNAME" ] || [ -z "$NOVA_LICENSE_KEY" ]; then
+            echo "::error::Grant this repository access to the NOVA_USERNAME and NOVA_LICENSE_KEY organization Actions secrets."
+            exit 1
+          fi
+          composer config --global --auth http-basic.nova.laravel.com "$NOVA_USERNAME" "$NOVA_LICENSE_KEY"
           composer update --with="laravel/framework:${{ matrix.laravel }}" --prefer-dist --no-interaction
         env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+          NOVA_USERNAME: ${{ secrets.NOVA_USERNAME }}
+          NOVA_LICENSE_KEY: ${{ secrets.NOVA_LICENSE_KEY }}
 
       - name: Execute tests
         run: composer test

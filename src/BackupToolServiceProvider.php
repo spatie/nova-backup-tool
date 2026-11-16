@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
+use Spatie\BackupTool\Http\Middleware\Authorize;
 
 class BackupToolServiceProvider extends ServiceProvider
 {
@@ -39,10 +40,12 @@ class BackupToolServiceProvider extends ServiceProvider
             return;
         }
 
-        Nova::router(config('nova.api_middleware', []), 'backups')
+        $middleware = [...config('nova.api_middleware', []), Authorize::class];
+
+        Nova::router($middleware, 'backups')
             ->group(__DIR__.'/../routes/inertia.php');
 
-        Route::middleware(config('nova.api_middleware', []))
+        Route::middleware($middleware)
             ->prefix('/nova-vendor/spatie/backup-tool')
             ->group(
                 __DIR__.'/../routes/api.php'

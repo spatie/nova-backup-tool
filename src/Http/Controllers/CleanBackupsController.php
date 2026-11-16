@@ -2,6 +2,7 @@
 
 namespace Spatie\BackupTool\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use Spatie\Backup\BackupDestination\BackupDestinationFactory;
 use Spatie\Backup\Config\Config;
 use Spatie\Backup\Tasks\Cleanup\CleanupJob;
@@ -17,6 +18,12 @@ class CleanBackupsController extends ApiController
 
         $cleanupJob->run();
 
-        $this->respondSuccess();
+        foreach ($config->backup->destination->disks as $disk) {
+            Cache::forget("backups-{$disk}");
+        }
+
+        Cache::forget('backup-statuses');
+
+        return $this->respondSuccess();
     }
 }
